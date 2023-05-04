@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +23,10 @@ public class WorldTile : MonoBehaviour
     private GameObject _start;
     [SerializeField]
     private GameObject _end;
+
+    public DangerLevel Danger { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
 
     /// <summary>
     /// Config this tile type
@@ -70,4 +73,11 @@ public class WorldTile : MonoBehaviour
     {
         _end.SetActive(true);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Danger.GetColor();
+        Gizmos.DrawWireCube(transform.position, transform.localScale);
+    }
+
 }

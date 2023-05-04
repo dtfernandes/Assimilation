@@ -1,7 +1,42 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public static class Extentions
 {
+    public static List<T> GetNeighbours<T>(this T[,] map, int row, int col)
+    {
+        List<T> neighbors = new List<T>(4);
+
+        // Check top neighbor
+        if (row > 0)
+        {
+            T topNeighbor = map[row - 1, col];
+            neighbors.Add(topNeighbor);
+        }
+
+        // Check bottom neighbor
+        if (row < map.GetLength(0) - 1)
+        {
+            T bottomNeighbor = map[row + 1, col];
+            neighbors.Add(bottomNeighbor);
+        }
+
+        // Check left neighbor
+        if (col > 0)
+        {
+            T leftNeighbor = map[row, col - 1];
+            neighbors.Add(leftNeighbor);
+        }
+
+        // Check right neighbor
+        if (col < map.GetLength(1) - 1)
+        {
+            T rightNeighbor = map[row, col + 1];
+            neighbors.Add(rightNeighbor);
+        }
+
+        return neighbors;
+    }
 
     public static void Random(this Dir self)
     {

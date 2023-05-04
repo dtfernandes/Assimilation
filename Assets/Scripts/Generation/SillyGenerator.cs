@@ -24,29 +24,29 @@ public class SillyGenerator : MonoBehaviour
     [Header("Tiles")]
     [SerializeField]
     private WorldTile _templateTilePREFAB;
+    private WorldTile[,] _map;
+
 
     private void Awake()
     {
         _mazeGenerator = new MazeGenerator();
         _mazeGenerator.AldousBroder(_width, _height);
+        _map = new WorldTile[_width, _height];
+
 
         //Select Start 
         Tuple<int, int> startCoords =
             new Tuple<int, int>(UnityEngine.Random.Range(0,_width),
             UnityEngine.Random.Range(0, _height));
 
-
         //Select End
-
-        Tuple<int, int> end = GetNewPosition(startCoords, 1);
+        Tuple<int, int> end = GetNewPosition(startCoords, 4);
 
         //Draw Map
         for (int i = 0; i < _mazeGenerator.Maze.GetLength(0); i++)
         {
             for (int j = 0; j < _mazeGenerator.Maze.GetLength(1); j++)
             {
-
-
                 Vector2 position = new Vector2(i * 17.76f, j * -10);
 
                 WorldTile tile =
@@ -54,25 +54,25 @@ public class SillyGenerator : MonoBehaviour
                      Quaternion.identity, transform);
 
                 tile.ConfigTile(_mazeGenerator.Maze[i, j]);
+               
+                tile.X = i;
+                tile.Y = j;
+                _map[i, j] = tile;
 
-                //if is start
-                if (startCoords.Item1 == i && startCoords.Item2 == j)
-                {
-                    tile.SetupAsStart();
-
-
-                }
-
-                //if is end
-                if (end.Item1 == i && end.Item2 == j)
-                {
-                    tile.SetupAsEnd();
-                }
             }
 
         }
-    }
 
+        #region Setup Danger Levels
+        _map[startCoords.Item1, startCoords.Item2].SetupAsStart();
+        _map[end.Item1, end.Item2].SetupAsEnd();
+
+        PropagateDangerValues(_map[end.Item1, end.Item2], DangerLevel.Impossible);
+        PropagateDangerValues(_map[startCoords.Item1, startCoords.Item2], DangerLevel.Hard);
+        _map[end.Item1, end.Item2].Danger = DangerLevel.Pacific;
+        _map[startCoords.Item1, startCoords.Item2].Danger = DangerLevel.Pacific;
+        #endregion
+    }
 
     /// <summary>
     /// Method that returns a new set of coordinates at a certain distance from 
@@ -104,5 +104,70 @@ public class SillyGenerator : MonoBehaviour
         }
 
         return bestCoord;
+    }
+
+    public void PropagateDangerValues(WorldTile coord, DangerLevel dangerlevel, 
+        DangerLevel forceLevel = DangerLevel.None)
+    {
+        int row = coord.X;
+        int col = coord.Y;
+
+        // Set the danger value of the initial tile
+        if (forceLevel != DangerLevel.None)
+        {
+            _map[row, col].Danger = forceLevel;
+        }
+        else
+        {
+            _map[row, col].Danger = dangerlevel;
+        }
+
+        // Propagate the danger value to neighboring tiles
+        Queue<WorldTile> queue = new Queue<WorldTile>();
+        queue.Enqueue(coord);
+
+        List<WorldTile> visited = new List<WorldTile> { };
+        
+
+        int iFP = 0;
+        while (queue.Count > 0)
+        {
+            iFP++;
+           
+            WorldTile currentCoord = queue.Dequeue();
+            visited.Add(currentCoord);
+
+            int currentRow = currentCoord.X;
+            int currentCol = currentCoord.Y;
+
+            DangerLevel currentDanger = _map[currentRow, currentCol].Danger;
+
+            if (iFP == 1)
+                currentDanger = dangerlevel;
+
+            List<WorldTile> neighbours = _map.GetNeighbours(currentRow, currentCol);
+           
+            // Propagate to neighboring tiles
+            foreach (WorldTile neighbour in neighbours)
+            {               
+                int neighborRow = neighbour.X;
+                int neighborCol = neighbour.Y;
+                DangerLevel neighbourDanger = _map[neighborRow, neighborCol].Danger;
+
+                if (currentDanger > neighbourDanger)
+                {  
+                    _map[neighborRow, neighborCol].Danger = currentDanger - 1; 
+                    
+                    if(!visited.Contains(neighbour))
+                        queue.Enqueue(neighbour);
+                }
+            }
+
+            if (iFP > 1000)
+            { 
+                Debug.LogError("Ifinite Loop");
+                break;
+            }
+        }
     }
 }

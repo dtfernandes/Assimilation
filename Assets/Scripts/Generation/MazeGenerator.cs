@@ -5,19 +5,6 @@ using UnityEngine;
 
 public class MazeGenerator
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
- 
 
     public MazeSlot[,] Maze { get; private set; }
 
@@ -142,12 +129,10 @@ public class MazeGenerator
         }
     }
 
-
     public void Wilson()
     {
 
 
     }
-
 
 }
