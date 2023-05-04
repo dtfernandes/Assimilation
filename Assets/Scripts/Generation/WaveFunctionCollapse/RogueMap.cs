@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 public class RogueMap : MonoBehaviour, IMap
 {
@@ -17,13 +18,16 @@ public class RogueMap : MonoBehaviour, IMap
     private RogueTile[] _tiles;
     [SerializeField]
     private RogueTile _end, _start;
-
+    MazeGenerator gen;
 
 
     public void GenerateMap()
     {
         //Create array of slots with the defined sizes
         _slots = new Slot[_width, _height];
+
+        gen = new MazeGenerator();
+        gen.AldousBroder(_width,_height);
 
         //Iterate trough the array and 
         for (int i = 0; i < Witdh; i++)
@@ -43,11 +47,11 @@ public class RogueMap : MonoBehaviour, IMap
         test.IsCollapsed = true;
         test.Tile = _start;
 
-        WaveFunctionCollapse wfc = new WaveFunctionCollapse();
+        //WaveFunctionCollapse wfc = new WaveFunctionCollapse();
+        //wfc.PropagateReaction(test, this);       
+        //wfc.Collapse(this);
 
-        wfc.PropagateReaction(test, this);
-        
-        wfc.Collapse(this);
+        SillyMapCollapser();
 
         //Draw Map
         for (int i = 0; i < _slots.GetLength(0); i++)
@@ -70,36 +74,111 @@ public class RogueMap : MonoBehaviour, IMap
         //Setup Camera
     }
 
+    private void SillyMapCollapser()
+    {
+
+        for (int i = 0; i < _slots.GetLength(0); i++)
+        {
+            for (int j = 0; j < _slots.GetLength(1); j++)
+            {
+                MazeSlot current = gen.Maze[i, j];
+
+                int down = current.Down == true ? 1: 0;
+                int up = current.Up == true ? 1 : 0;
+                int left = current.Left == true ? 1 : 0;
+                int right = current.Right == true ? 1 : 0;
+
+                List<ITile> possibles = new List<ITile> { };
+                possibles.AddRange(_tiles);
+                ITile tile = default;
+                try
+                {
+                    tile = possibles.First(x =>
+                    x.Connections.Down == down &&
+                     x.Connections.Right == right &&
+                      x.Connections.Left == left &&
+                       x.Connections.Up == up);
+
+                }
+                catch
+                {
+                    Debug.LogError("Tile not found" + " D: " + down + " U: "+ up 
+                        + " L: " + left + " R: " + right);
+                }
+
+
+                _slots[i, j].Tile = tile;
+                _slots[i, j].IsCollapsed = true;
+            }
+        }
+    }
+
     public Slot[] GetNeighbours(Slot slot)
     {
         System.Tuple<int,int> coords = _slots.CoordinatesOf(slot);
         Slot[] returnArray = new Slot[4];
 
 
+        MazeSlot mSlot = 
+            gen.Maze[coords.Item1, coords.Item2];
 
         //Get slot to the left
-        if(coords.Item1 - 1 >= 0)
+        if (!mSlot.Left)
         {
-            Slot left = _slots[coords.Item1 - 1, coords.Item2];
-            returnArray[0] = left;
+            returnArray[0] = null;
         }
-        //Get slot to the right
-        if (coords.Item1 + 1 < _width)
+        else
         {
-            Slot right = _slots[coords.Item1 + 1, coords.Item2];
-            returnArray[1] = right;
+            if (coords.Item1 - 1 >= 0)
+            {
+                Slot left = _slots[coords.Item1 - 1, coords.Item2];
+                returnArray[0] = left;
+            }
         }
-        //Get slot to the top_tiles
-        if (coords.Item2 - 1 >= 0)
+
+        if (!mSlot.Right)
         {
-            Slot top = _slots[coords.Item1, coords.Item2 - 1];
-            returnArray[2] = top;
+            returnArray[1] = null;
         }
-        //Get slot to the bottom
-        if (coords.Item2 + 1 < _height)
+        else
         {
-            Slot bottom = _slots[coords.Item1, coords.Item2 + 1];
-            returnArray[3] = bottom;
+            //Get slot to the right
+            if (coords.Item1 + 1 < _width)
+            {
+
+                Slot right = _slots[coords.Item1 + 1, coords.Item2];
+                returnArray[1] = right;
+            }
+        }
+
+        if (!mSlot.Up)
+        {
+            returnArray[2] = null;
+        }
+        else
+        {
+            //Get slot to the top_tiles
+            if (coords.Item2 - 1 >= 0)
+            {
+
+                Slot top = _slots[coords.Item1, coords.Item2 - 1];
+                returnArray[2] = top;
+            }
+        }
+
+        if (!mSlot.Down)
+        {
+            returnArray[3] = null;
+        }
+        else
+        {
+            //Get slot to the bottom
+            if (coords.Item2 + 1 < _height)
+            {
+
+                Slot bottom = _slots[coords.Item1, coords.Item2 + 1];
+                returnArray[3] = bottom;
+            }
         }
 
         return returnArray;
