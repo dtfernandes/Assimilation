@@ -60,7 +60,14 @@ public class WorldTile : MonoBehaviour
     /// </summary>
     public void SetupAsStart()
     {
-        Debug.Log("Hmm");
         _start.SetActive(true);    
+    }
+
+    /// <summary>
+    /// Makes this tile an end Tile
+    /// </summary>
+    public void SetupAsEnd()
+    {
+        _end.SetActive(true);
     }
 }
