@@ -15,8 +15,6 @@ public class StartingRoom : MonoBehaviour
     {
         Instantiate(_playerPREFAB, _playerSpawn.transform.position, Quaternion.identity);
         FindObjectOfType<CameraMovement>().ChangeTargetTo(this.gameObject, true);
-    
-        
     }
     
     
