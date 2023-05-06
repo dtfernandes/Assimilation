@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 3476606161575501854}
   - component: {fileID: 4474615246535249395}
   - component: {fileID: 8433518682161378579}
+  - component: {fileID: 735488592677695564}
   m_Layer: 7
   m_Name: ChangeableTile
   m_TagString: Untagged
@@ -571,6 +572,18 @@ MonoBehaviour:
   _openCeiling: {fileID: 5162004852835721900}
   _start: {fileID: 1844126590689329975}
   _end: {fileID: 8301301652762189033}
+--- !u!114 &735488592677695564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476606161575501849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557ac02a21c0b4e4a92ead72d50b68c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4427671483218557389
 GameObject:
   m_ObjectHideFlags: 0
