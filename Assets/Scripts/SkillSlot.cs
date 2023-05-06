@@ -5,8 +5,6 @@ using System;
 
 public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-
-    [SerializeField]
     private UpgradeDefinition _definition;
 
     [SerializeField]
@@ -15,6 +13,19 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private TextMeshProUGUI _title;
 
     public Action OnSelection { get; set; }
+
+
+    public void Setup(UpgradeDefinition selectedDefinition)
+    {
+        _definition = selectedDefinition;
+    }
+
+    void Start()
+    {
+        _title.text = _definition.Title;
+        _description.text = _definition.Description;
+    }
+
 
     public void OnPointerEnter(UnityEngine.EventSystems.PointerEventData eventData)
     {
@@ -35,10 +46,5 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         OnSelection?.Invoke();
     }
 
-    void Start()
-    {
-        _title.text = _definition.Title;
-        _description.text = _definition.Description;
-    }
-
+  
 }

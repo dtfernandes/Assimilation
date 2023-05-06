@@ -16,5 +16,5 @@ MonoBehaviour:
   <P_Speed>k__BackingField: {fileID: 11400000, guid: 6b5c52d8a526ae543b1423e540c9c73f, type: 2}
   <P_Attack>k__BackingField: {fileID: 11400000, guid: 63b76907abc14c44bb669d0c2877bffa, type: 2}
   <P_MaxJumps>k__BackingField: {fileID: 11400000, guid: d991a000fb316984cbf7f2cfda36ec25, type: 2}
-  <EndDistance>k__BackingField: {fileID: 0}
-  <WorldSize>k__BackingField: {fileID: 0}
+  <EndDistance>k__BackingField: {fileID: 11400000, guid: 8df11b10d0e512540a19a90751301130, type: 2}
+  <WorldSize>k__BackingField: {fileID: 11400000, guid: af07623e82abc8640861747b54cde779, type: 2}

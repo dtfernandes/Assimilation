@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEngine;
 
 
 /// <summary>
@@ -7,6 +10,38 @@
 [CreateAssetMenu(menuName = "Scriptables/GameValues")]
 public class GameValues: ScriptableObject
 {
+    /// <summary>
+    /// Method that resets all values
+    /// </summary>
+    public void ResetAll()
+    {
+        List<PropertyInfo> values = GetAllValues();
+
+        foreach(PropertyInfo v in values)
+        {
+            ScriptableInt scriptableInt = (ScriptableInt)v.GetValue(this);
+            scriptableInt.Value = scriptableInt.DefaultValue;
+            v.SetValue(this, scriptableInt);
+        }
+    }
+
+    //Gets all ScriptableInts using Reflection
+    //It's just easier to scale the code this way
+    private static List<PropertyInfo> GetAllValues()
+    {
+        List<PropertyInfo> scriptableIntProperties = new List<PropertyInfo>();
+        PropertyInfo[] properties = typeof(GameValues).GetProperties();
+
+        foreach (PropertyInfo property in properties)
+        {
+            if (property.PropertyType == typeof(ScriptableInt))
+            {
+                scriptableIntProperties.Add(property);
+            }
+        }
+
+        return scriptableIntProperties;
+    }
 
     #region Player
 

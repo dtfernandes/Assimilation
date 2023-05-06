@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0604fa5c69a0b764aad17f54a783eae2, type: 3}
-  m_Name: HealthUp
+  m_Name: P_HealthDown
   m_EditorClassIdentifier: 
-  <Title>k__BackingField: Health + 1
+  <Title>k__BackingField: Health - 1
   <Description>k__BackingField: You feel your heart shake.
+  <Type>k__BackingField: 1
   <Rarity>k__BackingField: 0
   <GameValue>k__BackingField: {fileID: 11400000, guid: 1d46ffad1a7f9cd43b80c50f948d00e7, type: 2}
-  <Value>k__BackingField: 1
+  <Value>k__BackingField: -1

@@ -9,12 +9,15 @@ public class GameState : ScriptableSingletonObject<GameState>
     {
         Floor = 0;
         IsWorldStopped = false;
+        GameValues.ResetAll();
     }
 
     public int Floor { get; set; }
     public bool IsWorldStopped { get; set; }
 
-    [field:
-        SerializeField]
+    [field:SerializeField]
     public GameValues GameValues {get; private set;}
+
+    [field: SerializeField]
+    public List<UpgradeDefinition> UpgradeDefinitions { get; private set; }
 }

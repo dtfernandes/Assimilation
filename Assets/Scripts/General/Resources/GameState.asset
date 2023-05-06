@@ -13,3 +13,12 @@ MonoBehaviour:
   m_Name: GameState
   m_EditorClassIdentifier: 
   <GameValues>k__BackingField: {fileID: 11400000, guid: b39a49f0e5530834b8dcb0a9874b5c94, type: 2}
+  <UpgradeDefinitions>k__BackingField:
+  - {fileID: 11400000, guid: 3c9c627b5368b744eac7c47ce6da3957, type: 2}
+  - {fileID: 11400000, guid: 803a82109bdc98e459d24759c0b56fc9, type: 2}
+  - {fileID: 11400000, guid: a8ffa7cdd823de445ba0de14e28059bd, type: 2}
+  - {fileID: 11400000, guid: 68f626ade1f7e8e448c29114bf00a707, type: 2}
+  - {fileID: 11400000, guid: 3829dc6a05c76ac479674ab45e9932c2, type: 2}
+  - {fileID: 11400000, guid: f171ec91e7404f143842e90afcbc8f7c, type: 2}
+  - {fileID: 11400000, guid: 300f1958e580fe44f97467217d939819, type: 2}
+  - {fileID: 11400000, guid: 5b627843b93aea642b7b06d3333eed8a, type: 2}
