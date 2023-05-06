@@ -432,10 +432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invincibilityTime: 0.5
-  maxHP: 1
-  _speed: 10
-  _maxJumps: 2
   <Exp>k__BackingField: {fileID: 11400000, guid: 51f15bb6bc2006748a0a7bed04100a87, type: 2}
+  _health: {fileID: 11400000, guid: c60601a2ac3311a449f46d738ec73602, type: 2}
 --- !u!1 &7966512275938030857
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,13 +10,18 @@ public class Player : Entity
 
     private int _jumps;
 
-    [field:SerializeField]
+    [field: SerializeField]
     public ScriptableInt Exp { get; private set; }
+
+    [field: SerializeField]
+    private ScriptableInt _health;
+
     private Rigidbody2D _rb;
 
     protected override void Awake()
     {
         base.Awake();
+        hp = gameValues.P_MaxHealth.Value;
         _jumps = gameValues.P_MaxJumps.Value;
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -93,6 +98,7 @@ public class Player : Entity
 
     protected override void DamageReaction()
     {
+        _health.Value = hp;
         Camera.main.GetComponent<ScreenShake>().Shake();
     }
 

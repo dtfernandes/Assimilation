@@ -11,6 +11,9 @@ public class SkillSelection: MonoBehaviour
     private SkillSlot[] _skillSlots;
     private GameState _gameState;
 
+    [SerializeField]
+    private List<Setupable> _updatables;
+
     private void Awake()
     {
         _gameState = GameState.Instance;
@@ -26,6 +29,12 @@ public class SkillSelection: MonoBehaviour
                 //Get back to the game
                 _gameState.IsWorldStopped = false;
                 gameObject.SetActive(false);
+
+                //Update everything asigned
+                foreach(Setupable s in _updatables)
+                {
+                    s.Setup();
+                }
             };
         }
 

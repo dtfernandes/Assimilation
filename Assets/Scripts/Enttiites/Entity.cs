@@ -32,7 +32,6 @@ public abstract class Entity: MonoBehaviour
     {
         gameState = GameState.Instance;
         gameValues = gameState.GameValues;
-        hp = gameValues.P_MaxHealth.Value;
         rigid = GetComponent<Rigidbody2D>();
     }
 
