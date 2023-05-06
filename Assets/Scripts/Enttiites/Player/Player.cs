@@ -6,29 +6,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : Entity
 {
-    [SerializeField]
-    private float _speed;
     private float _dumbtimer;
 
-    [SerializeField]
-    private int _maxJumps;
     private int _jumps;
 
     [field:SerializeField]
     public ScriptableInt Exp { get; private set; }
     private Rigidbody2D _rb;
- 
 
     protected override void Awake()
     {
         base.Awake();
-        _jumps = _maxJumps;
+        _jumps = gameValues.P_MaxJumps.Value;
         _rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if (inInvincibility) return;
+        if (inInvincibility || gameState.IsWorldStopped) return;
 
         //Reset horizontal velocity
         _rb.velocity = new Vector2(0, _rb.velocity.y);
@@ -52,7 +47,7 @@ public class Player : Entity
 
       
 
-        float xProper = xMove * Time.deltaTime * _speed * 1000;
+        float xProper = xMove * Time.deltaTime * gameValues.P_Speed.Value * 1000;
         _rb.AddForce(new Vector2(xProper, 0));        
     }
 
@@ -63,7 +58,7 @@ public class Player : Entity
 
     public void Update()
     {
-        if (inInvincibility) return;
+        if (inInvincibility || gameState.IsWorldStopped) return;
 
         if (_dumbtimer > 0)
             _dumbtimer -= 0.01f;
@@ -75,7 +70,7 @@ public class Player : Entity
 
         if (hit.collider != null && _dumbtimer == 0)
         {
-            _jumps = _maxJumps;
+            _jumps = gameValues.P_MaxJumps.Value;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {

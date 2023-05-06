@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Entity: MonoBehaviour 
 {
+    protected GameValues gameValues; 
+    protected GameState gameState;
+
     protected bool inInvincibility;
 
     [SerializeField]
@@ -12,9 +15,6 @@ public abstract class Entity: MonoBehaviour
 
     private float _invTimeChecker;
     private WaitForSeconds _invTime;
-
-    [SerializeField]
-    protected int maxHP;
 
     protected int hp;
     protected int atk;
@@ -30,7 +30,9 @@ public abstract class Entity: MonoBehaviour
 
     protected virtual void Awake()
     {
-        hp = maxHP;
+        gameState = GameState.Instance;
+        gameValues = gameState.GameValues;
+        hp = gameValues.P_MaxHealth.Value;
         rigid = GetComponent<Rigidbody2D>();
     }
 

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938a6b30bd3432d40b55c4a43520649d, type: 3}
+  m_Name: Game Values
+  m_EditorClassIdentifier: 
+  <P_MaxHealth>k__BackingField: {fileID: 11400000, guid: 1d46ffad1a7f9cd43b80c50f948d00e7, type: 2}
+  <P_Speed>k__BackingField: {fileID: 11400000, guid: 6b5c52d8a526ae543b1423e540c9c73f, type: 2}
+  <P_Attack>k__BackingField: {fileID: 11400000, guid: 63b76907abc14c44bb669d0c2877bffa, type: 2}
+  <P_MaxJumps>k__BackingField: {fileID: 11400000, guid: d991a000fb316984cbf7f2cfda36ec25, type: 2}
+  <EndDistance>k__BackingField: {fileID: 0}
+  <WorldSize>k__BackingField: {fileID: 0}

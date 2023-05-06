@@ -8,7 +8,7 @@ public class EndInteractable : Interactable
         GameState gState = GameState.Instance;
         gState.Floor++;
         
-        if (gState.Floor == 1)
+        if (gState.Floor == 5)
         {
             SceneManager.LoadScene("GameWin");
         }
