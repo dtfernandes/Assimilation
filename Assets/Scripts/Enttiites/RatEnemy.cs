@@ -78,12 +78,23 @@ public class RatEnemy : Enemy
         transform.position += new Vector3(_dir
             * _speed/2 * Time.deltaTime, 0f, 0f);
 
-        //Create ray        
+        //Create ray so the rat doesnt fall of the platform       
         RaycastHit2D hit =
             Physics2D.Raycast(transform.position + new Vector3(0.5f * _dir,0,0), new Vector3(0, -1f, 0), 0.6f, 
             (LayerMask.GetMask("GRound")), 0);
 
-        if (hit.collider == null)
+        //Create ray to know when the rat is in the platform
+        RaycastHit2D hit2 =
+           Physics2D.Raycast(transform.position, new Vector3(0, -1f, 0), 0.6f,
+           (LayerMask.GetMask("GRound")), 0);
+
+        //Create ray to know when the rat has something in front of him
+        RaycastHit2D hit3 =
+           Physics2D.Raycast(transform.position, new Vector3(1 * _dir, 0f, 0),
+           0.6f,LayerMask.GetMask("GRound"),0);
+
+        if ((hit.collider == null  && hit2.collider != null) 
+            || hit3.collider != null)
         {
             //Change direction
             ChangeDirection();
@@ -144,7 +155,8 @@ public class RatEnemy : Enemy
 
         Gizmos.DrawWireSphere(transform.position, _attackRadius);
 
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.white;
         Gizmos.DrawRay(transform.position + new Vector3(0.5f * _dir, 0, 0), new Vector3(0, -0.6f, 0));
+        Gizmos.DrawRay(transform.position, new Vector3(1 * _dir, 0, 0));
     }
 }

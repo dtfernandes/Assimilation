@@ -14,10 +14,12 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public Action OnSelection { get; set; }
 
-
     public void Setup(UpgradeDefinition selectedDefinition)
     {
         _definition = selectedDefinition;
+
+        _title.text = _definition.Title;
+        _description.text = _definition.Description;
     }
 
     void Start()
@@ -25,7 +27,6 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         _title.text = _definition.Title;
         _description.text = _definition.Description;
     }
-
 
     public void OnPointerEnter(UnityEngine.EventSystems.PointerEventData eventData)
     {
@@ -45,6 +46,6 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         _definition.GameValue.Value += _definition.Value;
         OnSelection?.Invoke();
     }
-
   
 }
+

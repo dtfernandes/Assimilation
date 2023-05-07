@@ -9,6 +9,8 @@ public class MagicLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameState.Instance.IsWorldStopped = false;
+        Time.timeScale = 1;
         StartCoroutine(Magic());
     }
 

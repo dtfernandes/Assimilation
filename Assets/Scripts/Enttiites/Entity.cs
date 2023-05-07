@@ -67,11 +67,11 @@ public abstract class Entity: MonoBehaviour
 
 
 
-        if (!inKnobackProtection)
-        {
+        //if (!inKnobackProtection)
+        //{
             rigid.velocity = new Vector2(0, 0);
             rigid.AddForce(force);
-        }
+        //}
 
         //Do Damage
         hp -= damage;

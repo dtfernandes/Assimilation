@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
             return;
 
         Instantiate(_selectedEnemy, transform.position,
-            Quaternion.identity, transform);
+            _selectedEnemy.transform.rotation, transform);
     }
 
     private void OnDrawGizmos()
