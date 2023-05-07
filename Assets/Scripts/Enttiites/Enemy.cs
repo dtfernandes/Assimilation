@@ -23,9 +23,23 @@ public abstract class Enemy: Entity
     protected override void Awake()
     { 
         base.Awake();
-        hp = _maxHp + gameValues.E_MaxHealth.Value;
+
+        gameValues.E_MaxHealth.OnChange -= SyncHP;
+        gameValues.E_MaxHealth.OnChange += SyncHP;
+        SyncHP();
+
         coll = GetComponent<Collider2D>();
+
+        void SyncHP()
+        {
+            //Not great
+            //Doesnt take into account situations
+            //where the player gets a mutation mid fight
+            hp = _maxHp + gameValues.E_MaxHealth.Value;
+        }
     }
+
+
 
     protected virtual void Update() 
     {

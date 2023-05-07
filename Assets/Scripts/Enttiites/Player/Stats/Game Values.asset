@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938a6b30bd3432d40b55c4a43520649d, type: 3}
   m_Name: Game Values
   m_EditorClassIdentifier: 
+  <Level>k__BackingField: {fileID: 11400000, guid: c1d4a512c2c98cd4dbff787362a2f0c6, type: 2}
+  <Exp>k__BackingField: {fileID: 11400000, guid: 51f15bb6bc2006748a0a7bed04100a87, type: 2}
   <P_MaxHealth>k__BackingField: {fileID: 11400000, guid: 1d46ffad1a7f9cd43b80c50f948d00e7, type: 2}
   <P_Speed>k__BackingField: {fileID: 11400000, guid: 6b5c52d8a526ae543b1423e540c9c73f, type: 2}
   <P_Attack>k__BackingField: {fileID: 11400000, guid: 63b76907abc14c44bb669d0c2877bffa, type: 2}

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0761e10d4fdd5064ebca15e9fd7ed680, type: 3}
-  m_Name: W_EndDistance
+  m_Name: Level
   m_EditorClassIdentifier: 
-  <DefaultValue>k__BackingField: 2
+  <DefaultValue>k__BackingField: 0

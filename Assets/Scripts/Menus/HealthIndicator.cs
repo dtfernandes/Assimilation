@@ -16,6 +16,8 @@ public class HealthIndicator : Setupable
     void Start()
     {
         Setup();
+
+        _health.OnChange += Setup;
     }
 
     public override void Setup()
@@ -28,7 +30,7 @@ public class HealthIndicator : Setupable
         //Clear every heart
         foreach(Transform t in transform)
         {
-            Destroy(t.gameObject);
+            Destroy(t?.gameObject);
         }
 
         for (int i = 0; i < _health.Value; i++)

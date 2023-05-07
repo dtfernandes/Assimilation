@@ -21,9 +21,20 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
-        hp = gameValues.P_MaxHealth.Value;
+
+        _health.OnChange -= SyncHealth;
+        _health.OnChange += SyncHealth;
+
+        hp = _health.Value;
+        _health.Value = hp;
+
         _jumps = gameValues.P_MaxJumps.Value;
         _rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void SyncHealth()
+    {
+        hp = _health.Value;
     }
 
     void FixedUpdate()
@@ -97,8 +108,7 @@ public class Player : Entity
 
     protected override void Death()
     {
-        if (hp <= 0)
-            UnityEngine.SceneManagement
-                .SceneManager.LoadScene("GameLose");
+        UnityEngine.SceneManagement
+            .SceneManager.LoadScene("GameLose");
     }
 }

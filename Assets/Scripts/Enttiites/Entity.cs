@@ -61,24 +61,20 @@ public abstract class Entity: MonoBehaviour
             _invTime = new WaitForSeconds(_invincibilityTime);
         }
 
-        DamageReaction();
-
         StartCoroutine(Invincibility());
 
-
-
-        //if (!inKnobackProtection)
-        //{
-            rigid.velocity = new Vector2(0, 0);
-            rigid.AddForce(force);
-        //}
-
+        rigid.velocity = new Vector2(0, 0);
+        rigid.AddForce(force);
+        
         //Do Damage
         hp -= damage;
         if(hp <= 0)
         {
             Death();
         }
+
+        DamageReaction();
+
     }
 
     IEnumerator Invincibility()

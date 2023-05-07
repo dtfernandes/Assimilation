@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c781f024ddfe8a40bb78c4568572d74, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
+  _health: {fileID: 11400000, guid: c60601a2ac3311a449f46d738ec73602, type: 2}
   <GameValues>k__BackingField: {fileID: 11400000, guid: b39a49f0e5530834b8dcb0a9874b5c94, type: 2}
   <UpgradeDefinitions>k__BackingField:
   - {fileID: 11400000, guid: 3c9c627b5368b744eac7c47ce6da3957, type: 2}
@@ -23,3 +24,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 300f1958e580fe44f97467217d939819, type: 2}
   - {fileID: 11400000, guid: 5b627843b93aea642b7b06d3333eed8a, type: 2}
   - {fileID: 11400000, guid: 1cd5680a42c35a54a92b6f050fef70dd, type: 2}
+  - {fileID: 11400000, guid: d1d84d7d3e1e3f94f9d08c4a439b8d6c, type: 2}

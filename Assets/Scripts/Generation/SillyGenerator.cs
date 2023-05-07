@@ -39,8 +39,16 @@ public class SillyGenerator : MonoBehaviour
             new Tuple<int, int>(UnityEngine.Random.Range(0,_width),
             UnityEngine.Random.Range(0, _height));
 
+        int endDistance = GameState.Instance.GameValues.EndDistance.Value;
+
+        //Make sure the distance is always possible
+        if(endDistance > Witdh)
+        {
+            endDistance = Witdh;
+        }
+
         //Select End
-        Tuple<int, int> end = GetNewPosition(startCoords, 4);
+        Tuple<int, int> end = GetNewPosition(startCoords, endDistance);
 
         //Draw Map
         for (int i = 0; i < _mazeGenerator.Maze.GetLength(0); i++)

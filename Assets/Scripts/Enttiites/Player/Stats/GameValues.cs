@@ -20,6 +20,7 @@ public class GameValues: ScriptableObject
         foreach(PropertyInfo v in values)
         {
             ScriptableInt scriptableInt = (ScriptableInt)v.GetValue(this);
+            scriptableInt.OnChange = null;
             scriptableInt.Value = scriptableInt.DefaultValue;
             v.SetValue(this, scriptableInt);
         }
@@ -44,6 +45,13 @@ public class GameValues: ScriptableObject
     }
 
     #region Player
+
+    [field: SerializeField]
+    public ScriptableInt Level { get; private set; }
+
+    [field: SerializeField]
+    public ScriptableInt Exp { get; private set; }
+
 
     [field: SerializeField]
     public ScriptableInt P_MaxHealth { get; private set; }
