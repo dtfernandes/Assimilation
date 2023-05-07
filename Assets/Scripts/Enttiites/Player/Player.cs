@@ -48,17 +48,10 @@ public class Player : Entity
             }
 
             xMove = Input.GetAxisRaw("Horizontal");
-        }
-
-      
+        }     
 
         float xProper = xMove * Time.deltaTime * gameValues.P_Speed.Value * 1000;
         _rb.AddForce(new Vector2(xProper, 0));        
-    }
-
-    public void GainExp(int v)
-    {
-        throw new NotImplementedException();
     }
 
     public void Update()
@@ -104,6 +97,8 @@ public class Player : Entity
 
     protected override void Death()
     {
-        
+        if (hp <= 0)
+            UnityEngine.SceneManagement
+                .SceneManager.LoadScene("GameLose");
     }
 }

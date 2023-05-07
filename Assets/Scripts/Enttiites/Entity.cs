@@ -9,6 +9,7 @@ public abstract class Entity: MonoBehaviour
     protected GameState gameState;
 
     protected bool inInvincibility;
+    protected bool inKnobackProtection;
 
     [SerializeField]
     private float _invincibilityTime;
@@ -20,7 +21,8 @@ public abstract class Entity: MonoBehaviour
     protected int atk;
 
     protected Rigidbody2D rigid;
-
+    [SerializeField]
+    protected Animator anim;
 
     protected enum Direction
     {
@@ -37,6 +39,7 @@ public abstract class Entity: MonoBehaviour
 
     public void RecieveDamage(int damage, GameObject attacker)
     {
+
         //Calculate Position
         Direction dir = 0;
 
@@ -62,8 +65,13 @@ public abstract class Entity: MonoBehaviour
 
         StartCoroutine(Invincibility());
 
-        rigid.velocity = new Vector2(0,0);
-        rigid.AddForce(force);
+
+
+        if (!inKnobackProtection)
+        {
+            rigid.velocity = new Vector2(0, 0);
+            rigid.AddForce(force);
+        }
 
         //Do Damage
         hp -= damage;

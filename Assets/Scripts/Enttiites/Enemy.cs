@@ -43,8 +43,6 @@ public abstract class Enemy: Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (inInvincibility) return;
-
         if (collision.gameObject.tag == "Player")
         {
             AttackPlayer(collision.gameObject.GetComponent<Entity>());
@@ -58,7 +56,7 @@ public abstract class Enemy: Entity
         if (collision.gameObject.tag == "Attack")
         {
             rigid.gravityScale = 1;
-            RecieveDamage(1, collision.gameObject);
+            RecieveDamage(1 + gameValues.P_Attack.Value, collision.gameObject);
         }
     }
 
