@@ -9,6 +9,9 @@ public class ValueSlider : MonoBehaviour
     [SerializeField]
     private ScriptableInt _value;
 
+    [SerializeField]
+    private SkillSelection skillSelection;
+
     private Slider _slider;
    
 
@@ -30,6 +33,10 @@ public class ValueSlider : MonoBehaviour
             _value.Value = 0;
             LevelUp.Level++;
             _slider.maxValue = LevelUp.levelLimits[LevelUp.Level];
+
+            skillSelection.gameObject.SetActive(true);
+            skillSelection.SetupSelection(UpgradeType.Upgrade);
+
         }
     }
 }

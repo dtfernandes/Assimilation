@@ -12,11 +12,13 @@ public abstract class Enemy: Entity
     protected int _maxHp;
 
     [SerializeField]
+    protected int _speed;
+
+    [SerializeField]
     protected GameObject expOrbPREFAB;
 
     [field:SerializeField]
     public int DangerLevel { get; private set; }
-
 
     protected override void Awake()
     { 
@@ -64,7 +66,6 @@ public abstract class Enemy: Entity
     {
         player.RecieveDamage(1,this.gameObject);
     }
-
 
     protected override void Death()
     {

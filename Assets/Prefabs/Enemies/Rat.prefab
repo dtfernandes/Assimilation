@@ -86,8 +86,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _invincibilityTime: 0.5
   _maxHp: 3
+  _speed: 2
   expOrbPREFAB: {fileID: 2192656415450708005, guid: 1a7afc92f479f3b49bc1a944e09307e2, type: 3}
   <DangerLevel>k__BackingField: 1
+  _view: 3.06
+  _attackRadius: 1.35
 --- !u!1 &8606283813055994336
 GameObject:
   m_ObjectHideFlags: 0

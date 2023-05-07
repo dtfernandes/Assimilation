@@ -12,8 +12,6 @@ public class BirbEnemy : Enemy
     [SerializeField]
     private float _offset;
     [SerializeField]
-    private float _speed;
-    [SerializeField]
     private float _viewRange;
 
     private WaitForSeconds _surveyAreaTime;

@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class State : MonoBehaviour
+public class State 
 {
+    public Action Enter;
+    public Action Exit;
+    public Action Update;
 
-    //On Enter
-    //On Exit
-    //On Update
-
-    List<Transition> transitions;
+    public State(Action enter, Action exit, Action update)
+    {
+        Enter = enter;
+        Exit = exit;
+        Update = update;
+    }
 }
