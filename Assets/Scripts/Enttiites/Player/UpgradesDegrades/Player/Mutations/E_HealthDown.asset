@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0604fa5c69a0b764aad17f54a783eae2, type: 3}
-  m_Name: P_SpeedUp
+  m_Name: E_HealthDown
   m_EditorClassIdentifier: 
-  <Title>k__BackingField: Speed + 2
-  <Description>k__BackingField: You feel your muscles tighten up.
-  <Type>k__BackingField: 0
+  <Title>k__BackingField: Enemy Health + 1
+  <Description>k__BackingField: You surrounding feels more dangerous
+  <Type>k__BackingField: 1
   <Rarity>k__BackingField: 0
-  <GameValue>k__BackingField: {fileID: 11400000, guid: 6b5c52d8a526ae543b1423e540c9c73f, type: 2}
-  <Value>k__BackingField: 2
+  <GameValue>k__BackingField: {fileID: 11400000, guid: 1f842955434a5d84b9c2af484e9c9729, type: 2}
+  <Value>k__BackingField: 1

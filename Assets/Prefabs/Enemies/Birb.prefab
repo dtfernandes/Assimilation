@@ -85,8 +85,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invincibilityTime: 0.5
-  maxHP: 3
+  _maxHp: 2
   expOrbPREFAB: {fileID: 2192656415450708005, guid: 1a7afc92f479f3b49bc1a944e09307e2, type: 3}
+  <DangerLevel>k__BackingField: 2
   _offset: 2
   _speed: 2.37
   _viewRange: 3.78
@@ -234,7 +235,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: db7f548da5bbc184ca67102e3d947a17, type: 3}
 --- !u!95 &6585023155261300275
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -251,4 +252,5 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

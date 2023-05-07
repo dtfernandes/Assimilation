@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,10 @@ public class WorldTile : MonoBehaviour
     [SerializeField]
     private GameObject _end;
 
+    [SerializeField]
+    List<LayoutHandler> _layouts;
+    LayoutHandler _selectedLayout;
+
     public DangerLevel Danger { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
@@ -34,23 +39,25 @@ public class WorldTile : MonoBehaviour
     /// <param name="slot">Data of the slot this tile will mimic</param>
     public void ConfigTile(MazeSlot slot)
     {
+
+        _selectedLayout = 
+            _layouts[UnityEngine.Random.Range(0, _layouts.Count)];
+
         if (slot.Down)
         {
             _down.SetActive(false);
             _openFloor.SetActive(true);
         }
-
         if (slot.Up)
         {
             _up.SetActive(false);
             _openCeiling.SetActive(true);
+            _selectedLayout = _layouts[0];
         }
-
         if (slot.Left)
         {
             _left.SetActive(false);
         }
-
         if (slot.Right)
         {
             _right.SetActive(false);
@@ -80,4 +87,11 @@ public class WorldTile : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, transform.localScale);
     }
 
+    public void SpawnEnemies()
+    {
+        LayoutHandler newLayout = Instantiate(_selectedLayout,
+          transform.position, Quaternion.identity, transform);
+
+        newLayout.SpawnEnemies((int)Danger);
+    }
 }

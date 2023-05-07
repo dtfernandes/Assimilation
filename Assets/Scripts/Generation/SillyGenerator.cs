@@ -71,6 +71,15 @@ public class SillyGenerator : MonoBehaviour
         PropagateDangerValues(_map[startCoords.Item1, startCoords.Item2], DangerLevel.Hard);
         _map[end.Item1, end.Item2].Danger = DangerLevel.Pacific;
         _map[startCoords.Item1, startCoords.Item2].Danger = DangerLevel.Pacific;
+
+        for (int i = 0; i < _mazeGenerator.Maze.GetLength(0); i++)
+        {
+            for (int j = 0; j < _mazeGenerator.Maze.GetLength(1); j++)
+            {
+                _map[i, j].SpawnEnemies();
+            }
+        }
+
         #endregion
     }
 

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0604fa5c69a0b764aad17f54a783eae2, type: 3}
   m_Name: P_SpeedDown
   m_EditorClassIdentifier: 
-  <Title>k__BackingField: Speed - 10
+  <Title>k__BackingField: Speed - 5
   <Description>k__BackingField: You feel your muscles lossen up.
   <Type>k__BackingField: 1
   <Rarity>k__BackingField: 0
   <GameValue>k__BackingField: {fileID: 11400000, guid: 6b5c52d8a526ae543b1423e540c9c73f, type: 2}
-  <Value>k__BackingField: -10
+  <Value>k__BackingField: -5

@@ -71,6 +71,13 @@ public class GameValues: ScriptableObject
     #endregion
 
     #region Enemies
+    [field: SerializeField]
+    public ScriptableInt E_MaxHealth { get; private set; }
 
+    [field: SerializeField]
+    public ScriptableInt E_Speed { get; private set; }
+
+    [field: SerializeField]
+    public ScriptableInt E_Attack { get; private set; }
     #endregion
 }

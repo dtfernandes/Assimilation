@@ -9,11 +9,19 @@ public abstract class Enemy: Entity
     protected Collider2D roomCollider;
 
     [SerializeField]
+    protected int _maxHp;
+
+    [SerializeField]
     protected GameObject expOrbPREFAB;
 
+    [field:SerializeField]
+    public int DangerLevel { get; private set; }
+
+
     protected override void Awake()
-    {
+    { 
         base.Awake();
+        hp = _maxHp + gameValues.E_MaxHealth.Value;
         coll = GetComponent<Collider2D>();
     }
 
@@ -69,7 +77,5 @@ public abstract class Enemy: Entity
             Rigidbody2D r = o.GetComponent<Rigidbody2D>();
             r.AddForce(new Vector2(Random.Range(-100,100),200));
         }
-
-        Debug.Log("Dead");
     }
 }

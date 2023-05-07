@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0761e10d4fdd5064ebca15e9fd7ed680, type: 3}
-  m_Name: Exp
+  m_Name: E_MaxHealth
   m_EditorClassIdentifier: 
   <Value>k__BackingField: 0
   <DefaultValue>k__BackingField: 0
