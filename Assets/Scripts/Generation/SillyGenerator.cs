@@ -42,9 +42,9 @@ public class SillyGenerator : MonoBehaviour
         int endDistance = GameState.Instance.GameValues.EndDistance.Value;
 
         //Make sure the distance is always possible
-        if(endDistance > Witdh)
+        if(endDistance > Witdh - 1)
         {
-            endDistance = Witdh;
+            endDistance = Witdh - 1;
         }
 
         //Select End
