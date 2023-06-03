@@ -76,7 +76,7 @@ public class Slot
                     otherCon = tile.Connections.Up;
                     break;
             }
-            if (otherCon == connection)
+            if (otherCon == connection || connection == 0)
                 newPossibleTiles.Add(tile);
         }
 

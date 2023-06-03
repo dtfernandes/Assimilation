@@ -25,10 +25,12 @@ public struct MazeSlot
         //Iterate until it finds a "Open" connection
         foreach (Biome b in connections)
         {
-            if (b  == 0)
+            Biome biomeTemp = b & ~Biome.Closed;
+
+            if (biomeTemp == 0)
                 continue;
 
-            return b;
+            return biomeTemp;
         }
 
         return Biome.Closed;

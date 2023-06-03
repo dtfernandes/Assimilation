@@ -578,6 +578,9 @@ MonoBehaviour:
   _biomes:
   - {fileID: 11400000, guid: e82926eafde243f3ab80e7c71c8bcdbf, type: 2}
   - {fileID: 11400000, guid: 6b746b66a69004d83b8e5512e5c53d76, type: 2}
+  - {fileID: 11400000, guid: f330ee699d24d8e448840289b189f981, type: 2}
+  - {fileID: 11400000, guid: fa5da496d73ba354198849e68d994d10, type: 2}
+  - {fileID: 11400000, guid: 51819b6d22a00274889160a2448352e8, type: 2}
 --- !u!1 &4427671483218557389
 GameObject:
   m_ObjectHideFlags: 0

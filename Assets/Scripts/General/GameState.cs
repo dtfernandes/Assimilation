@@ -14,6 +14,8 @@ public class GameState : ScriptableSingletonObject<GameState>
     }
 
     public int Floor { get; set; }
+
+    [field: SerializeField]
     public bool IsWorldStopped { get; set; }
 
     [field: SerializeField]
