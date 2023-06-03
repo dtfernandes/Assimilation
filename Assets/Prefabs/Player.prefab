@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 7966512275710627647}
   - component: {fileID: 7966512275710627644}
   - component: {fileID: 7966512275710627645}
+  - component: {fileID: 5506100162223707873}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -413,7 +414,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.8
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -432,8 +433,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invincibilityTime: 0.5
+  anim: {fileID: 0}
+  _jumpForce: 400
   <Exp>k__BackingField: {fileID: 11400000, guid: 51f15bb6bc2006748a0a7bed04100a87, type: 2}
   _health: {fileID: 11400000, guid: c60601a2ac3311a449f46d738ec73602, type: 2}
+  _jumpDustPREFAB: {fileID: 8589020475503518022, guid: b4f3f44bacf9add3594f249b6bc4d838, type: 3}
+  _jumpDustOffset: {x: -0.05, y: 0, z: 0}
+  _moveDusrPREFAB: {fileID: 0}
+--- !u!95 &5506100162223707873
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966512275710627640}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7748666a762de5ffbb46b67bb764b532, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7966512275938030857
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938a6b30bd3432d40b55c4a43520649d, type: 3}
+  m_Name: Game Values
+  m_EditorClassIdentifier: 
+  <Level>k__BackingField: {fileID: 11400000, guid: c1d4a512c2c98cd4dbff787362a2f0c6, type: 2}
+  <Exp>k__BackingField: {fileID: 11400000, guid: 51f15bb6bc2006748a0a7bed04100a87, type: 2}
+  <P_MaxHealth>k__BackingField: {fileID: 11400000, guid: 1d46ffad1a7f9cd43b80c50f948d00e7, type: 2}
+  <P_Speed>k__BackingField: {fileID: 11400000, guid: 6b5c52d8a526ae543b1423e540c9c73f, type: 2}
+  <P_Attack>k__BackingField: {fileID: 11400000, guid: 63b76907abc14c44bb669d0c2877bffa, type: 2}
+  <P_MaxJumps>k__BackingField: {fileID: 11400000, guid: d991a000fb316984cbf7f2cfda36ec25, type: 2}
+  <EndDistance>k__BackingField: {fileID: 11400000, guid: 8df11b10d0e512540a19a90751301130, type: 2}
+  <WorldSize>k__BackingField: {fileID: 11400000, guid: af07623e82abc8640861747b54cde779, type: 2}
+  <E_MaxHealth>k__BackingField: {fileID: 11400000, guid: 1f842955434a5d84b9c2af484e9c9729, type: 2}
+  <E_Speed>k__BackingField: {fileID: 11400000, guid: a01849974942037498d05514269062f1, type: 2}
+  <E_Attack>k__BackingField: {fileID: 11400000, guid: 4ee982379ce9c7d468445ba5dc084ac6, type: 2}
