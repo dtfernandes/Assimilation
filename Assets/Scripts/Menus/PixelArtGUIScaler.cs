@@ -53,7 +53,6 @@ public partial class PixelArtGUIScaler : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(worldWidth ,worldHeight);
     }
 }
-#endif
 
 public partial class PixelArtGUIScaler : MonoBehaviour
 {
@@ -82,3 +81,5 @@ public partial class PixelArtGUIScaler : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(worldWidth, worldHeight);
     }
 }
+
+#endif
