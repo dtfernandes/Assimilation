@@ -51,7 +51,7 @@ public class WorldTile : MonoBehaviour
 
         foreach(BiomeConfig bc in _biomes)
         {
-            if(slotBiome == bc.Biome){
+            if((slotBiome & bc.Biome) == bc.Biome){
                 _background.sprite = bc.Background;
                 break;
             }

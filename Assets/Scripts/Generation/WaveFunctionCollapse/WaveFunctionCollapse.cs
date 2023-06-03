@@ -121,7 +121,8 @@ public class WaveFunctionCollapse
             for (int j = 0; j < maze.GetLength(1); j++)
             {
                 // Accessing each cell in the maze
-                maze[i, j].Left = Biome.Cavern;
+                maze[i, j].Left = maze[i, j].Left | Biome.Cavern;
+                maze[i, j].Left = maze[i, j].Left & ~Biome.Forest;
             }
         }
 
