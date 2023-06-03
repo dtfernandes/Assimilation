@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19a8cd778c26a7b4eb11d3f70f71af7d, type: 3}
-  m_Name: End
+  m_Script: {fileID: 11500000, guid: 78f6adf2c4bc0203492ba2b9ebc2036f, type: 3}
+  m_Name: Forest
   m_EditorClassIdentifier: 
-  _index: 11
-  _connections:
-    up: 0
-    down: 0
-    left: 1
-    right: 1
-  <RoomPrefab>k__BackingField: {fileID: 1412078097293851003, guid: 7668141fce0996c48a2d1c4977e22f33, type: 3}
+  _biome: 6
+  <Background>k__BackingField: {fileID: 21300000, guid: 95ba88b6fe62f65f48f121feea8249de, type: 3}

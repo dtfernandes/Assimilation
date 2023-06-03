@@ -13,6 +13,18 @@ public class MazeGenerator
         // Get grid
         Maze = new MazeSlot[width, height];
 
+
+
+        for (int i = 0; i < Maze.GetLength(0); i++)
+        {
+            // Iterating through columns
+            for (int j = 0; j < Maze.GetLength(1); j++)
+            {
+                // Accessing each cell in the maze
+                Maze[i, j].Default();
+            }
+        }
+
         int numbOfEmpty = Maze.Length - 1;
 
         //Get random neighbour
@@ -49,32 +61,32 @@ public class MazeGenerator
                             newY = testY + 1;
                             if (!Maze[testX, newY].Visited)
                             {
-                                Maze[testX, testY].Down = true;
-                                Maze[testX, newY].Up = true;
+                                Maze[testX, testY].Down = Biome.Forest;
+                                Maze[testX, newY].Up = Biome.Forest;
                             }
                             break;
                         case Dir.Top:
                             newY = testY - 1;
                             if (!Maze[testX, newY].Visited)
                             {
-                                Maze[testX, testY].Up = true;
-                                Maze[testX, newY].Down = true;
+                                Maze[testX, testY].Up = Biome.Forest;
+                                Maze[testX, newY].Down = Biome.Forest;
                             }
                             break;
                         case Dir.Left:
                             newX = testX - 1;
                             if (!Maze[newX, testY].Visited)
                             {
-                                Maze[testX, testY].Left = true;
-                                Maze[newX, testY].Right = true;
+                                Maze[testX, testY].Left = Biome.Forest;
+                                Maze[newX, testY].Right = Biome.Forest;
                             }
                             break;
                         case Dir.Right:
                             newX = testX + 1;
                             if (!Maze[newX, testY].Visited)
                             {
-                                Maze[testX, testY].Right = true;
-                                Maze[newX, testY].Left = true;
+                                Maze[testX, testY].Right = Biome.Forest;
+                                Maze[newX, testY].Left = Biome.Forest;
                             }
                             break;
                     }

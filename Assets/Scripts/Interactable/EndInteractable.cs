@@ -5,6 +5,7 @@ public class EndInteractable : Interactable
     public override void Interact()
     {
 
+        
         GameState gState = GameState.Instance;
         gState.Floor++;
         

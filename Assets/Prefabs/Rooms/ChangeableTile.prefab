@@ -567,6 +567,7 @@ MonoBehaviour:
   _right: {fileID: 2378605167309280510}
   _up: {fileID: 5122508026541934207}
   _down: {fileID: 8281318620894601214}
+  _background: {fileID: 6189207274521886100}
   _openFloor: {fileID: 8552399205663482632}
   _openCeiling: {fileID: 5162004852835721900}
   _start: {fileID: 1844126590689329975}
@@ -574,6 +575,9 @@ MonoBehaviour:
   _layouts:
   - {fileID: 5273997651901016665, guid: 4f5c0f07b7855294aa59117822cea4e8, type: 3}
   - {fileID: 588834158603894031, guid: 9c0f80f8f3c5a1244a6df77c2801850d, type: 3}
+  _biomes:
+  - {fileID: 11400000, guid: e82926eafde243f3ab80e7c71c8bcdbf, type: 2}
+  - {fileID: 11400000, guid: 6b746b66a69004d83b8e5512e5c53d76, type: 2}
 --- !u!1 &4427671483218557389
 GameObject:
   m_ObjectHideFlags: 0

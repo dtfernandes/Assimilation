@@ -83,10 +83,10 @@ public class RogueMap : MonoBehaviour, IMap
             {
                 MazeSlot current = gen.Maze[i, j];
 
-                int down = current.Down == true ? 1: 0;
-                int up = current.Up == true ? 1 : 0;
-                int left = current.Left == true ? 1 : 0;
-                int right = current.Right == true ? 1 : 0;
+                int down = current.Down == Biome.Forest ? 1: 0;
+                int up = current.Up == Biome.Forest ? 1 : 0;
+                int left = current.Left == Biome.Forest ? 1 : 0;
+                int right = current.Right == Biome.Forest ? 1 : 0;
 
                 List<ITile> possibles = new List<ITile> { };
                 possibles.AddRange(_tiles);
@@ -123,7 +123,7 @@ public class RogueMap : MonoBehaviour, IMap
             gen.Maze[coords.Item1, coords.Item2];
 
         //Get slot to the left
-        if (!mSlot.Left)
+        if (mSlot.Left != Biome.Closed)
         {
             returnArray[0] = null;
         }
@@ -136,7 +136,7 @@ public class RogueMap : MonoBehaviour, IMap
             }
         }
 
-        if (!mSlot.Right)
+        if (mSlot.Right != Biome.Closed)
         {
             returnArray[1] = null;
         }
@@ -151,7 +151,7 @@ public class RogueMap : MonoBehaviour, IMap
             }
         }
 
-        if (!mSlot.Up)
+        if (mSlot.Up != Biome.Closed)
         {
             returnArray[2] = null;
         }
@@ -166,7 +166,7 @@ public class RogueMap : MonoBehaviour, IMap
             }
         }
 
-        if (!mSlot.Down)
+        if (mSlot.Down != Biome.Closed)
         {
             returnArray[3] = null;
         }

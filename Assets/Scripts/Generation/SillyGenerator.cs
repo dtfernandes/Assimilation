@@ -26,12 +26,20 @@ public class SillyGenerator : MonoBehaviour
     private WorldTile _templateTilePREFAB;
     private WorldTile[,] _map;
 
+    [SerializeField]
+    private MazeSlot[,] _maze;
 
     private void Awake()
     {
         _mazeGenerator = new MazeGenerator();
         _mazeGenerator.AldousBroder(_width, _height);
+
         _map = new WorldTile[_width, _height];
+
+
+
+        WaveFunctionCollapse _wfc = new WaveFunctionCollapse();
+        _maze = _wfc.Collapse(_mazeGenerator.Maze);
 
 
         //Select Start 
@@ -51,9 +59,9 @@ public class SillyGenerator : MonoBehaviour
         Tuple<int, int> end = GetNewPosition(startCoords, endDistance);
 
         //Draw Map
-        for (int i = 0; i < _mazeGenerator.Maze.GetLength(0); i++)
+        for (int i = 0; i < _maze.GetLength(0); i++)
         {
-            for (int j = 0; j < _mazeGenerator.Maze.GetLength(1); j++)
+            for (int j = 0; j < _maze.GetLength(1); j++)
             {
                 Vector2 position = new Vector2(i * 17.76f, j * -10);
 
@@ -61,7 +69,7 @@ public class SillyGenerator : MonoBehaviour
                      Instantiate(_templateTilePREFAB, position,
                      Quaternion.identity, transform);
 
-                tile.ConfigTile(_mazeGenerator.Maze[i, j]);
+                tile.ConfigTile(_maze[i, j]);
                
                 tile.X = i;
                 tile.Y = j;
@@ -104,9 +112,9 @@ public class SillyGenerator : MonoBehaviour
         Tuple<int, int> bestCoord = null;
         int bestDistance = int.MaxValue;
 
-        for (int x = 0; x < _mazeGenerator.Maze.GetLength(0); x++)
+        for (int x = 0; x < _maze.GetLength(0); x++)
         {
-            for (int y = 0; y < _mazeGenerator.Maze.GetLength(1); y++)
+            for (int y = 0; y < _maze.GetLength(1); y++)
             {
                 Tuple<int, int> currentTile = new Tuple<int, int>(x, y);
                

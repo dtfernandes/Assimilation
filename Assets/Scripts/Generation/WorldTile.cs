@@ -12,6 +12,9 @@ public class WorldTile : MonoBehaviour
     private GameObject _left;
     [SerializeField]
     private GameObject _right, _up, _down;
+    [SerializeField]
+    private SpriteRenderer _background;
+
 
     [Header("Open Variants")]
     [SerializeField]
@@ -26,8 +29,11 @@ public class WorldTile : MonoBehaviour
     private GameObject _end;
 
     [SerializeField]
-    List<LayoutHandler> _layouts;
-    LayoutHandler _selectedLayout;
+    private List<LayoutHandler> _layouts;
+    private LayoutHandler _selectedLayout;
+
+    [SerializeField]
+    private BiomeConfig[] _biomes;
 
     public DangerLevel Danger { get; set; }
     public int X { get; set; }
@@ -40,25 +46,36 @@ public class WorldTile : MonoBehaviour
     public void ConfigTile(MazeSlot slot)
     {
 
+
+        Biome slotBiome = slot.GetBiome();
+
+        foreach(BiomeConfig bc in _biomes)
+        {
+            if(slotBiome == bc.Biome){
+                _background.sprite = bc.Background;
+                break;
+            }
+        }
+
         _selectedLayout = 
             _layouts[UnityEngine.Random.Range(0, _layouts.Count)];
 
-        if (slot.Down)
+        if ((slot.Down & Biome.Closed) != Biome.Closed)
         {
             _down.SetActive(false);
             _openFloor.SetActive(true);
         }
-        if (slot.Up)
+        if ((slot.Up & Biome.Closed) != Biome.Closed)
         {
             _up.SetActive(false);
             _openCeiling.SetActive(true);
             _selectedLayout = _layouts[0];
         }
-        if (slot.Left)
+        if ((slot.Left & Biome.Closed) != Biome.Closed)
         {
             _left.SetActive(false);
         }
-        if (slot.Right)
+        if ((slot.Right & Biome.Closed) != Biome.Closed)
         {
             _right.SetActive(false);
         }

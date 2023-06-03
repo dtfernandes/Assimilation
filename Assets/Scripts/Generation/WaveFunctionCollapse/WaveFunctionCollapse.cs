@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using System;
+using Unity.VisualScripting;
 
 public class WaveFunctionCollapse
 {
@@ -113,6 +110,22 @@ public class WaveFunctionCollapse
         {
             PropagateReaction(_testNeighbours.Dequeue(), map);
         }
+    }
+
+    public MazeSlot[,] Collapse(MazeSlot[,] maze)
+    {
+
+        for (int i = 0; i < maze.GetLength(0); i++)
+        {
+            // Iterating through columns
+            for (int j = 0; j < maze.GetLength(1); j++)
+            {
+                // Accessing each cell in the maze
+                maze[i, j].Left = Biome.Cavern;
+            }
+        }
+
+        return maze;
     }
    
 }

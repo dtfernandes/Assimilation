@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 public class StateMachine 
 {
+
+
     private State currentState;
     private List<Transition> transitions;
 
