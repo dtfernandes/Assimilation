@@ -1015,6 +1015,22 @@ MonoBehaviour:
   _width: 3
   _height: 3
   _templateTilePREFAB: {fileID: 8433518682161378579, guid: 617d7f829da9fbc44a9ab89ba8f5e547, type: 3}
+  _possibleTiles:
+  - {fileID: 11400000, guid: 6c129f47734050e92a517a0b9c422750, type: 2}
+  - {fileID: 11400000, guid: ae4b142e146b7c82d9325cb48b5d980e, type: 2}
+  - {fileID: 11400000, guid: d7c63dd2a62ee65aa860667ff32a6e24, type: 2}
+  - {fileID: 11400000, guid: d085419b187ac9d33b0115effd4da980, type: 2}
+  - {fileID: 11400000, guid: 19b538077508eafac8c2880f91657965, type: 2}
+  - {fileID: 11400000, guid: c91a0195aea68a746ab859b533838c54, type: 2}
+  - {fileID: 11400000, guid: e4e3ded5896f79d9abcdda95614b2a4f, type: 2}
+  - {fileID: 11400000, guid: 78c6462b30e60ec2ca33db3afa938ec4, type: 2}
+  - {fileID: 11400000, guid: 5126dd7c513aacab2b0d0a2cbbf1aff5, type: 2}
+  - {fileID: 11400000, guid: ea13de53f6b68cef5b1e1f6a48c80d36, type: 2}
+  - {fileID: 11400000, guid: 0e9fd98842ed7a23c979118b11822e28, type: 2}
+  - {fileID: 11400000, guid: a5eb3e6b892806d81b4c1cc06e79eca9, type: 2}
+  - {fileID: 11400000, guid: bb83c71dcb0e182f18f597fa5ecdf64f, type: 2}
+  - {fileID: 11400000, guid: 6562c2b3da763d4979599c4bbd2ec8f7, type: 2}
+  - {fileID: 11400000, guid: b45bf35a7264d9d36a3bf2e2b8b79f12, type: 2}
 --- !u!1 &461630405
 GameObject:
   m_ObjectHideFlags: 0
@@ -11454,7 +11470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1873499880
 Transform:
   m_ObjectHideFlags: 0

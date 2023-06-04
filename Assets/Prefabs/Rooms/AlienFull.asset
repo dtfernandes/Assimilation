@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a8cd778c26a7b4eb11d3f70f71af7d, type: 3}
+  m_Name: AlienFull
+  m_EditorClassIdentifier: 
+  _index: 7
+  _connections:
+    up: 32
+    down: 32
+    left: 32
+    right: 32
+  <RoomPrefab>k__BackingField: {fileID: 3476606161575501849, guid: f842ab6ade14cdeb998fc9bd33b66c87, type: 3}

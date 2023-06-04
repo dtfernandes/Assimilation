@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Building
   m_EditorClassIdentifier: 
   _biome: 64
-  <Background>k__BackingField: {fileID: 21300000, guid: 95ba88b6fe62f65f48f121feea8249de, type: 3}
+  <Background>k__BackingField: {fileID: 21300000, guid: 42fa9c59345743d4c89fa6999d42bab9, type: 3}

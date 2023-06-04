@@ -29,6 +29,11 @@ public class SillyGenerator : MonoBehaviour
     [SerializeField]
     private MazeSlot[,] _maze;
 
+
+    private RogueTile[,] _selectedTiles;
+    [SerializeField]
+    private RogueTile[] _possibleTiles;
+
     private void Awake()
     {
         _mazeGenerator = new MazeGenerator();
@@ -36,10 +41,10 @@ public class SillyGenerator : MonoBehaviour
 
         _map = new WorldTile[_width, _height];
 
-
+        _maze = _mazeGenerator.Maze;
 
         WaveFunctionCollapse _wfc = new WaveFunctionCollapse();
-        _maze = _wfc.Collapse(_mazeGenerator.Maze);
+        _selectedTiles = _wfc.Collapse(_mazeGenerator.Maze, _possibleTiles);
 
 
         //Select Start 
@@ -65,9 +70,12 @@ public class SillyGenerator : MonoBehaviour
             {
                 Vector2 position = new Vector2(i * 17.76f, j * -10);
 
-                WorldTile tile =
-                     Instantiate(_templateTilePREFAB, position,
+                GameObject gtile =
+                     Instantiate(_selectedTiles[i,j].RoomPrefab , position,
                      Quaternion.identity, transform);
+
+
+                WorldTile tile = gtile.GetComponent<WorldTile>();
 
                 tile.ConfigTile(_maze[i, j]);
                

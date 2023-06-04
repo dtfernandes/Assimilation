@@ -40,7 +40,7 @@ public class Slot
     /// <param name="connections">Type of connection</param>
     public void Collapse(int index, Connections connections)
     {
-        int connection = 0;
+        Biome connection = 0;
         switch (index)
         {
             case 0:
@@ -60,7 +60,7 @@ public class Slot
         IList<ITile> newPossibleTiles = new List<ITile> { };
         foreach(ITile tile in PossibleTiles)
         {
-            int otherCon = 0;
+            Biome otherCon = 0;
             switch (index)
             {
                 case 0:
@@ -89,7 +89,7 @@ public class Slot
        
         foreach (ITile t in possible)
         {
-            int connection = 0;
+            Biome connection = 0;
             switch (index)
             {
                 case 0:
@@ -108,7 +108,7 @@ public class Slot
           
             foreach (ITile tile in PossibleTiles)
             {
-                int otherCon = 0;
+                Biome otherCon = 0;
                 switch (index)
                 {
                     case 0:

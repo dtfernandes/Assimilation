@@ -12,9 +12,6 @@ public class WorldTile : MonoBehaviour
     private GameObject _left;
     [SerializeField]
     private GameObject _right, _up, _down;
-    [SerializeField]
-    private SpriteRenderer _background;
-
 
     [Header("Open Variants")]
     [SerializeField]
@@ -32,8 +29,6 @@ public class WorldTile : MonoBehaviour
     private List<LayoutHandler> _layouts;
     private LayoutHandler _selectedLayout;
 
-    [SerializeField]
-    private BiomeConfig[] _biomes;
 
     public DangerLevel Danger { get; set; }
     public int X { get; set; }
@@ -45,18 +40,7 @@ public class WorldTile : MonoBehaviour
     /// <param name="slot">Data of the slot this tile will mimic</param>
     public void ConfigTile(MazeSlot slot)
     {
-
-
-        Biome slotBiome = slot.GetBiome();
-
-        foreach(BiomeConfig bc in _biomes)
-        {
-            if((slotBiome & bc.Biome) == bc.Biome){
-                _background.sprite = bc.Background;
-                break;
-            }
-        }
-
+        
         _selectedLayout = 
             _layouts[UnityEngine.Random.Range(0, _layouts.Count)];
 

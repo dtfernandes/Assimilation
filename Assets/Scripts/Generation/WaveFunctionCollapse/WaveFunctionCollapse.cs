@@ -113,7 +113,7 @@ public class WaveFunctionCollapse
         }
     }
 
-    public MazeSlot[,] Collapse(MazeSlot[,] maze)
+    public RogueTile[,] Collapse(MazeSlot[,] maze, IList<ITile> possibleTiles)
     {
 
         for (int i = 0; i < maze.GetLength(0); i++)
@@ -131,12 +131,12 @@ public class WaveFunctionCollapse
         }
 
         //Create a map with this slots
-        MazeMap map = new MazeMap(maze.GetLength(0),maze.GetLength(1),maze);
+        MazeMap map = new MazeMap(maze.GetLength(0),maze.GetLength(1),maze, possibleTiles);
         map.GenerateMap();
 
         Collapse(map);
 
-        return map.GetAsMaze();
+        return map.GetAsTiles();
     }
      
 }
@@ -170,40 +170,18 @@ public class MazeMap : IMap
 
     public int Height => _height;
 
-    private GenericTile[] _tiles;
+    private IList<ITile> _tiles;
 
-    public MazeMap(int width, int height, MazeSlot[,] maze)
+    public MazeMap(int width, int height, MazeSlot[,] maze, IList<ITile> possibleTiles)
     {
         _width = width;
         _height = height;
         this._maze = maze;
+        _tiles = possibleTiles;
     }
 
     public void GenerateMap()
     {
-        _tiles = new GenericTile[15];
-
-
-        //Forest Tiles
-        _tiles[0] = new GenericTile(0, new Connections((int)Biome.Forest, (int)Biome.Forest, (int)Biome.Forest, (int)Biome.Forest));
-        _tiles[1] = new GenericTile(1, new Connections((int)Biome.Forest, (int)Biome.Cavern, (int)Biome.Forest, (int)Biome.Forest));
-        _tiles[2] = new GenericTile(2, new Connections((int)Biome.Forest, (int)Biome.Forest, (int)Biome.Beach, (int)Biome.Forest));
-        _tiles[3] = new GenericTile(3, new Connections((int)Biome.Forest, (int)Biome.Forest, (int)Biome.Forest, (int)Biome.Building));
-
-        _tiles[4] = new GenericTile(9, new Connections((int)Biome.Building, (int)Biome.Building, (int)Biome.Building, (int)Biome.Building));
-        _tiles[5] = new GenericTile(10, new Connections((int)Biome.Building, (int)Biome.Cavern, (int)Biome.Building, (int)Biome.Building));
-        _tiles[6] = new GenericTile(11, new Connections((int)Biome.Cavern, (int)Biome.Building, (int)Biome.Building, (int)Biome.Building));
-        _tiles[7] = new GenericTile(12, new Connections((int)Biome.Building, (int)Biome.Cavern, (int)Biome.Building, (int)Biome.Building));
-        _tiles[8] = new GenericTile(13, new Connections((int)Biome.Building, (int)Biome.Building, (int)Biome.Cavern, (int)Biome.Building));
-        _tiles[9] = new GenericTile(14, new Connections((int)Biome.Building, (int)Biome.Building, (int)Biome.Building, (int)Biome.Cavern));
-
-        _tiles[10] = new GenericTile(15, new Connections((int)Biome.Cavern, (int)Biome.Cavern, (int)Biome.Cavern, (int)Biome.Cavern));
-        _tiles[11] = new GenericTile(16, new Connections((int)Biome.Cavern, (int)Biome.Cavern, (int)Biome.Alien, (int)Biome.Cavern));
-        _tiles[12] = new GenericTile(17, new Connections((int)Biome.Cavern, (int)Biome.Cavern, (int)Biome.Cavern, (int)Biome.Alien));
-        _tiles[13] = new GenericTile(18, new Connections((int)Biome.Cavern, (int)Biome.Alien, (int)Biome.Cavern, (int)Biome.Cavern));
-
-        _tiles[14] = new GenericTile(19, new Connections((int)Biome.Alien, (int)Biome.Alien, (int)Biome.Alien, (int)Biome.Alien));
-
         //Create array of slots with the defined sizes
         _slots = new Slot[_width, _height];
 
@@ -294,12 +272,12 @@ public class MazeMap : IMap
         for (int i = 0; i < _width; i++)
         {
             for (int j = 0; j < _height; j++)
-            {              
+            {
                 _maze[i, j].Left =
                     _maze[i, j].Left | (Biome)Slots[i,j].Tile.Connections.Left;
-                _maze[i, j].Right = 
+                _maze[i, j].Right =
                     _maze[i, j].Right | (Biome)Slots[i, j].Tile.Connections.Right;
-                _maze[i, j].Up = 
+                _maze[i, j].Up =
                     _maze[i, j].Up | (Biome)Slots[i, j].Tile.Connections.Up;
                 _maze[i, j].Down =
                     _maze[i, j].Down | (Biome)Slots[i, j].Tile.Connections.Down;
@@ -307,5 +285,20 @@ public class MazeMap : IMap
         }
 
         return _maze;
+    }
+
+    public RogueTile[,] GetAsTiles()
+    {
+        RogueTile[,] returnMatrix = new RogueTile[_width,_height];
+
+        for (int i = 0; i < _width; i++)
+        {
+            for (int j = 0; j < _height; j++)
+            {
+                returnMatrix[i,j] = Slots[i,j].Tile as RogueTile;
+            }
+        }
+
+        return returnMatrix;
     }
 }

@@ -94,10 +94,10 @@ public class RogueMap : MonoBehaviour, IMap
                 try
                 {
                     tile = possibles.First(x =>
-                    x.Connections.Down == down &&
-                     x.Connections.Right == right &&
-                      x.Connections.Left == left &&
-                       x.Connections.Up == up);
+                    x.Connections.Down == (Biome)down &&
+                     x.Connections.Right == (Biome)right &&
+                      x.Connections.Left == (Biome)left &&
+                       x.Connections.Up == (Biome)up);
 
                 }
                 catch

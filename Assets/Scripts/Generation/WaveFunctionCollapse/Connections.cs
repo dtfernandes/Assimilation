@@ -12,7 +12,7 @@ public class Connections
     }
 
 
-    public Connections(int up, int down, int left, int right)
+    public Connections(Biome up, Biome down, Biome left, Biome right)
     {
         this.up = up;
         this.down = down;
@@ -21,10 +21,10 @@ public class Connections
     }
 
     [SerializeField]
-    private int up, down, left, right;
+    private Biome up, down, left, right;
 
-    public int Up => up;
-    public int Down => down;
-    public int Left => left;
-    public int Right => right;
+    public Biome Up => up;
+    public Biome Down => down;
+    public Biome Left => left;
+    public Biome Right => right;
 }
