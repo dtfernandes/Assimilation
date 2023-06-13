@@ -33,8 +33,29 @@ public class BirbEnemy : Enemy
     }
    
     protected override void Update()
-    {
-        if (inInvincibility) return;
+    {      
+        if(inInvincibility) return;
+        
+        if (gameState.IsWorldStopped)
+        {
+            if(stoppedAux)
+            {
+                //Do this on the first frame stopped
+                rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+                stoppedAux = false;
+            }
+            return;
+        }
+        else
+        {
+             if(!stoppedAux)
+            {
+                //Do this on the first frame after regaining movement
+                rigid.constraints = initialConstraints;
+                stoppedAux = true;
+            }
+        }
+
         base.Update();
         state?.Invoke();
     }
@@ -48,6 +69,7 @@ public class BirbEnemy : Enemy
 
     public void Idle()
     {
+        
         int dir = 0;
 
         float heightToMove = _height - transform.position.y ;

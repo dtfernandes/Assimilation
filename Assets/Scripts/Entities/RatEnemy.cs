@@ -39,6 +39,31 @@ public class RatEnemy : Enemy
 
     protected override void Update()
     {
+        if(inInvincibility) return;
+        
+        if (gameState.IsWorldStopped)
+        {
+            if(stoppedAux)
+            {
+                //Do this on the first frame stopped
+                rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+                stoppedAux = false;
+                anim.enabled = false;
+            }
+            return;
+        }
+        else
+        {
+             if(!stoppedAux)
+            {
+                //Do this on the first frame after regaining movement
+                rigid.constraints = initialConstraints;
+                stoppedAux = true;
+                anim.enabled = true;
+            }
+        }
+
+
         base.Update();
         _stateMachine.Update();
     }
@@ -72,8 +97,7 @@ public class RatEnemy : Enemy
         anim.Play("RatWalk");
         anim.speed = 1;
 
-        if (inInvincibility || gameState.IsWorldStopped 
-            || inKnobackProtection) return;
+        if (inKnobackProtection) return;
 
         transform.position += new Vector3(_dir
             * _speed/2 * Time.deltaTime, 0f, 0f);
@@ -112,8 +136,7 @@ public class RatEnemy : Enemy
     public void Chase()
     {
 
-        if (inInvincibility || gameState.IsWorldStopped
-            || inKnobackProtection) return;
+        if (inKnobackProtection) return;
 
         anim.Play("RatWalk");
         anim.speed = 2;
@@ -139,7 +162,7 @@ public class RatEnemy : Enemy
 
     public void SlashAttack()
     {
-        rigid.AddForce(new Vector2(150 * _dir, 120));
+        rigid.AddForce(new Vector2(250 * _dir, 120));
     }
 
     public void RemoveInvisibility()

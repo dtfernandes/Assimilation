@@ -20,9 +20,13 @@ public abstract class Entity: MonoBehaviour
     protected int hp;
     protected int atk;
 
+    protected bool stoppedAux;
+    protected RigidbodyConstraints2D initialConstraints;
+
     protected Rigidbody2D rigid;
     [SerializeField]
     protected Animator anim;
+
 
     protected enum Direction
     {
@@ -31,10 +35,12 @@ public abstract class Entity: MonoBehaviour
     }
 
     protected virtual void Awake()
-    {
+    {       
         gameState = GameState.Instance;
         gameValues = gameState.GameValues;
         rigid = GetComponent<Rigidbody2D>();
+
+        initialConstraints = rigid.constraints;
     }
 
     public void RecieveDamage(int damage, GameObject attacker)

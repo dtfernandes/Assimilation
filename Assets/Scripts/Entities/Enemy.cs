@@ -48,7 +48,7 @@ public abstract class Enemy: Entity
 
     protected virtual void Update() 
     {
-     
+       
     }
 
     protected virtual void Start() 

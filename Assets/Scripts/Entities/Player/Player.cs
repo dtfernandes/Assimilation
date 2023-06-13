@@ -44,6 +44,7 @@ public class Player : Entity
         _rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
+
     }
 
     public void SyncHealth()
@@ -53,7 +54,7 @@ public class Player : Entity
 
     void FixedUpdate()
     {
-        if (inInvincibility || gameState.IsWorldStopped || _onAttack) return;
+        if(inInvincibility || gameState.IsWorldStopped || _onAttack) return;
 
         //Reset horizontal velocity
         _rb.velocity = new Vector2(0, _rb.velocity.y);
@@ -87,8 +88,31 @@ public class Player : Entity
     }
 
     public void Update()
-    {
-        if (inInvincibility || gameState.IsWorldStopped) return;
+    {        
+
+        if(inInvincibility) return;
+        
+        if (gameState.IsWorldStopped)
+        {
+            if(stoppedAux)
+            {
+                //Do this on the first frame stopped
+                rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+                stoppedAux = false;
+                anim.enabled = false;
+            }
+            return;
+        }
+        else
+        {
+             if(!stoppedAux)
+            {
+                //Do this on the first frame after regaining movement
+                rigid.constraints = initialConstraints;
+                stoppedAux = true;
+                anim.enabled = true;
+            }
+        }
 
         if (_dumbtimer > 0)
             _dumbtimer -= 0.01f;
