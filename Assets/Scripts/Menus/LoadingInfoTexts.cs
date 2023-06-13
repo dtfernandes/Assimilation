@@ -11,8 +11,21 @@ public class LoadingInfoTexts : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _floorText;
 
-    private void Awake()
+    [SerializeField]
+    TypewriterEffect typewriter;
+
+    private void Start()
     {
-        _floorText.text = "Floor " + GameState.Instance.Floor;
+        if(GameState.Instance.Floor != 0)
+        {
+            typewriter.Begin("Floor " + GameState.Instance.Floor + " ");
+            _floorText.fontSize = 62.5f;  
+        }
+        else{
+            typewriter.Begin("Mission ID: X2AX01 \n Agent number : 20300:001 \n A strange signal has been detected +"
+            + "in the area \n You mission is to find it. \n ......Entering Floor 0. . . . . . .");  
+
+            _floorText.fontSize = 30;  
+        }
     }
 }
