@@ -16,6 +16,15 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void Setup(UpgradeDefinition selectedDefinition)
     {
+        if(selectedDefinition == null) 
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        else
+             gameObject.SetActive(true);
+
+
         _definition = selectedDefinition;
 
         _title.text = _definition.Title;

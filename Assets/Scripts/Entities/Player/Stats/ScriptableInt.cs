@@ -6,6 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptables/Int")]
 public class ScriptableInt : ScriptableObject
 {
+
+    [field:SerializeField]
+    public int MinValue {get;set;}
+
     private int _value;
 
     [SerializeField]
@@ -17,6 +21,9 @@ public class ScriptableInt : ScriptableObject
         }
         set
         {
+            if(value < MinValue)
+                value = MinValue;
+
             _value = value;
             try 
             {

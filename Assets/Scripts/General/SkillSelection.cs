@@ -53,7 +53,9 @@ public class SkillSelection: MonoBehaviour
 
         //Find all of type
         definitions = definitions.Where(x => x.Type == type).ToList();
-        
+
+
+
         foreach (SkillSlot slot in _skillSlots)
         {
             //Select Rarity
@@ -70,13 +72,17 @@ public class SkillSelection: MonoBehaviour
             }
 
             List<UpgradeDefinition> temp = null;
+
+            //Make sure the skill is aplicable
+            definitions = definitions.Where(x => x.GameValue.Value + x.Value >= x.GameValue.MinValue).ToList();
+
             while (true)
             {
                 //Get the list of definition with this rarity
                 temp = definitions.Where(
                     x => x.Rarity == selectedRarity).ToList();
 
-                if (temp.Count > 0)
+                if (temp.Count > 0 || selectedRarity == 0)
                     break;
                 else
                 {
@@ -86,10 +92,12 @@ public class SkillSelection: MonoBehaviour
                     selectedRarity -= 1;
                 }
             }
-
+            UpgradeDefinition selectedDefinition  = null;   
+            
+            if(temp.Count > 0)
             //Select Random Skill
-            UpgradeDefinition selectedDefinition =
-                temp[Random.Range(0, temp.Count)];
+                selectedDefinition = temp[Random.Range(0, temp.Count)];
+                
             //Setup slots
             slot.Setup(selectedDefinition);
 

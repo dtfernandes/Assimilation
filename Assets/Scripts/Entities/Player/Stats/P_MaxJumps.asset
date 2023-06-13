@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0761e10d4fdd5064ebca15e9fd7ed680, type: 3}
   m_Name: P_MaxJumps
   m_EditorClassIdentifier: 
+  <MinValue>k__BackingField: 2
   <DefaultValue>k__BackingField: 2
