@@ -705,6 +705,7 @@ MonoBehaviour:
   _layouts:
   - {fileID: 5273997651901016665, guid: 4f5c0f07b7855294aa59117822cea4e8, type: 3}
   - {fileID: 588834158603894031, guid: 9c0f80f8f3c5a1244a6df77c2801850d, type: 3}
+  _biome: 64
 --- !u!1 &4427671483218557389
 GameObject:
   m_ObjectHideFlags: 0
