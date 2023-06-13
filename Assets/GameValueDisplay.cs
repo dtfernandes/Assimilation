@@ -29,6 +29,6 @@ public class GameValueDisplay : MonoBehaviour
 
         //Needs to only update when the menu is open instead of every frame
         _text.text = $"<color=#{color}>" + _name + ": " 
-            + _value.Value + "</color>|" + _value.DefaultValue;
+            + _value.Value + "</color>";
     }
 }
