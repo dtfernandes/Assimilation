@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c781f024ddfe8a40bb78c4568572d74, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
+  <IsWorldStopped>k__BackingField: 0
   _health: {fileID: 11400000, guid: c60601a2ac3311a449f46d738ec73602, type: 2}
   <GameValues>k__BackingField: {fileID: 11400000, guid: b39a49f0e5530834b8dcb0a9874b5c94, type: 2}
   <UpgradeDefinitions>k__BackingField:

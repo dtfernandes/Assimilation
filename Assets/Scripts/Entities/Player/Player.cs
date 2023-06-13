@@ -10,6 +10,11 @@ public class Player : Entity
 
     private int _jumps;
 
+    private bool _onAttack;
+    private bool _onGround;
+
+    private int _dir;
+
     [field: SerializeField]
     public ScriptableInt Exp { get; private set; }
 
@@ -46,7 +51,7 @@ public class Player : Entity
 
     void FixedUpdate()
     {
-        if (inInvincibility || gameState.IsWorldStopped) return;
+        if (inInvincibility || gameState.IsWorldStopped || _onAttack) return;
 
         //Reset horizontal velocity
         _rb.velocity = new Vector2(0, _rb.velocity.y);
@@ -61,10 +66,14 @@ public class Player : Entity
             //Simple Rotation 
             if (Input.GetAxisRaw("Horizontal") > 0.5f)
             {
+                anim.SetFloat("dir", 1);
+                 _dir = 1;
                 transform.eulerAngles = new Vector3(0,0,0);
             }
             else
             {
+                 _dir = 0;
+                anim.SetFloat("dir", 0);
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
 
@@ -88,30 +97,96 @@ public class Player : Entity
             Physics2D.Raycast(transform.position, new Vector3(0, -1f, 0), 0.6f, (LayerMask.GetMask("GRound")), 0);
 
 
-        if(hit.collider == null){
+        if(hit.collider == null && _onGround && !_onAttack){
              //Player is in the air
-            anim.SetTrigger("inAir");
+            
+            _onGround = false;
         }
         else if (hit.collider != null && _dumbtimer == 0)
-        {
-             anim.SetTrigger("onGround");
+        {       
             _jumps = gameValues.P_MaxJumps.Value;
+            _onGround = true;
         }
+        
+        anim.SetBool("onGround", !_onGround);
 
 
+        //Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
+            
             if (_jumps > 0)
             {
-                _rb.velocity = new Vector2(_rb.velocity.x, 0);
-                _dumbtimer = 0.1f;
-                _rb.AddForce(new Vector2(0, _jumpForce));
-                Instantiate(_jumpDustPREFAB, transform.position + _jumpDustOffset, Quaternion.identity);
+                EndAttackAnimation();
+                Jump();
                 _jumps -= 1;
             }
         }
 
+
+        if (Input.GetMouseButtonDown(0))
+        {   
+            
+            bool down = false;
+
+             if(Input.GetAxisRaw("Horizontal") >= 0.5f)
+            {
+                _dir = 1;
+                anim.SetFloat("dir", 1);
+            }
+            if(Input.GetAxisRaw("Horizontal") <= -0.5f)
+            {
+                _dir = 0;
+                anim.SetFloat("dir", 0);
+            }
+
+            if(Input.GetAxisRaw("Vertical") >= 0.5f)
+            {
+                _dir = 2;
+                anim.SetFloat("dir", 2);
+            }
+            if(Input.GetAxisRaw("Vertical") <= -0.5f)
+            {
+                _dir = 3;
+                anim.SetFloat("dir", 3);
+                down = true;
+            }
+
+            if(!down || !_onGround)
+            {
+
+                if(_onGround)
+                {
+                    _rb.velocity = new Vector2(0, _rb.velocity.y);
+                }
+
+                _onGround = true;
+                anim.SetBool("onGround", true);
+
+                anim.SetTrigger("attack");
+                _onAttack = true;
+            }
+
+        }
+
+    }
+
+
+    public void Jump()
+    {
+        _rb.velocity = new Vector2(_rb.velocity.x, 0);
+        _dumbtimer = 0.1f;
+        _rb.AddForce(new Vector2(0, _jumpForce));
+        Instantiate(_jumpDustPREFAB, transform.position + _jumpDustOffset, Quaternion.identity);
+       
+    }
+
+    public void EndAttackAnimation()
+    {
+
+        _onGround = false;
+        _onAttack = false;
     }
 
     private void OnDrawGizmos()
@@ -132,4 +207,15 @@ public class Player : Entity
         UnityEngine.SceneManagement
             .SceneManager.LoadScene("GameLose");
     }
+
+    public void OnTriggerEnter2D(Collider2D coll)
+    {
+        if(!_onAttack) return;
+        if(coll.gameObject.GetComponent<Enemy>() == null) return;
+            
+        if(_dir == 3)
+            Jump();
+        
+    }
+
 }

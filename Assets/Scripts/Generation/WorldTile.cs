@@ -40,7 +40,7 @@ public class WorldTile : MonoBehaviour
     /// <param name="slot">Data of the slot this tile will mimic</param>
     public void ConfigTile(MazeSlot slot)
     {
-        
+
         _selectedLayout = 
             _layouts[UnityEngine.Random.Range(0, _layouts.Count)];
 

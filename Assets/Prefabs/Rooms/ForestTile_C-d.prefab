@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 881461416564651741, guid: 57945b8715113e310ac48b9f1ae5b576, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503447346989063957, guid: 57945b8715113e310ac48b9f1ae5b576, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -864807987, guid: 72fba5daa8150627fa33f54bffa3683d, type: 3}
     - target: {fileID: 3476606161575501849, guid: 57945b8715113e310ac48b9f1ae5b576, type: 3}
       propertyPath: m_Name
-      value: ForestTile_Full
+      value: ForestTile_C-d
       objectReference: {fileID: 0}
     - target: {fileID: 3476606161575501854, guid: 57945b8715113e310ac48b9f1ae5b576, type: 3}
       propertyPath: m_RootOrder
@@ -53,6 +61,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3476606161575501854, guid: 57945b8715113e310ac48b9f1ae5b576, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824264915822025272, guid: 57945b8715113e310ac48b9f1ae5b576, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281318620894601214, guid: 57945b8715113e310ac48b9f1ae5b576, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552399205663482632, guid: 57945b8715113e310ac48b9f1ae5b576, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

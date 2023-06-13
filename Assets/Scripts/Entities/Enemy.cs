@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 [RequireComponent(typeof(Collider2D))]
 public abstract class Enemy: Entity
 {
@@ -7,6 +8,10 @@ public abstract class Enemy: Entity
     
     protected GameObject room;
     protected Collider2D roomCollider;
+
+    [SerializeField]
+    protected DamageDisplay damageNumPREFAB;
+
 
     [SerializeField]
     protected int _maxHp;
@@ -69,8 +74,21 @@ public abstract class Enemy: Entity
 
         if (collision.gameObject.tag == "Attack")
         {
+            
+            DamageDisplay damageText =
+                 Instantiate(damageNumPREFAB, transform.position, Quaternion.identity);
+            
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+            
+            damageText.gameObject.transform.position = screenPos + new Vector3(0f, 1, 0f); 
+
+           
+            rigid.velocity = new Vector2(0,0);
             rigid.gravityScale = 1;
+            
             RecieveDamage(1 + gameValues.P_Attack.Value, collision.gameObject);
+            damageText.SetText(1 + gameValues.P_Attack.Value);
+
         }
     }
 

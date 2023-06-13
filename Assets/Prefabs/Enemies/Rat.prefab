@@ -87,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _invincibilityTime: 0.5
   anim: {fileID: 1800011252133531188}
+  damageNumPREFAB: {fileID: 3514439010199612354, guid: 929c4e99011be43de868097fb2d76b0e, type: 3}
   _maxHp: 3
   _speed: 2
   expOrbPREFAB: {fileID: 2192656415450708005, guid: 1a7afc92f479f3b49bc1a944e09307e2, type: 3}

@@ -167,7 +167,7 @@ TextureImporter:
         width: 480
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,6 +175,27 @@ TextureImporter:
       bones: []
       spriteID: aed68f33dc6927fbea62fee18ff4f33a
       internalID: -155601519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestComponents_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 86
+        width: 480
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd5570e477b06a2c7a822f8559096401
+      internalID: -864807987
       vertices: []
       indices: 
       edges: []
@@ -193,6 +214,7 @@ TextureImporter:
       ForestComponents_0: -219414799
       ForestComponents_1: 1659933096
       ForestComponents_2: -155601519
+      ForestComponents_3: -864807987
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
