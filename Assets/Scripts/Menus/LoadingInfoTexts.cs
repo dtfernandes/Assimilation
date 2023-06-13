@@ -22,7 +22,9 @@ public class LoadingInfoTexts : MonoBehaviour
             _floorText.fontSize = 62.5f;  
         }
         else{
-            typewriter.Begin("Mission ID: X2AX01 \n Agent number : 20300:001 \n A strange signal has been detected "
+
+            int deaths =  1 + PlayerPrefs.GetInt("deaths");
+            typewriter.Begin($"Mission ID: X2AX0{deaths} \n Agent number : 20300:00{deaths} \n A strange signal has been detected "
             + "in the area \n Your mission is to find it, secure it and eliminate if necessary. \n Entering Floor 0. . . . . . .");  
 
             _floorText.fontSize = 30;  

@@ -231,6 +231,8 @@ public class Player : Entity
 
     protected override void Death()
     {
+        int deaths = PlayerPrefs.GetInt("deaths");
+        PlayerPrefs.SetInt("deaths", deaths + 1);
         UnityEngine.SceneManagement
             .SceneManager.LoadScene("GameLose");
     }
