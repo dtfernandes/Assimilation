@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 7979413368705313875}
   - component: {fileID: 9150456239063000909}
   - component: {fileID: 7647855040997410405}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,6 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invincibilityTime: 0.5
+  spriteRenderer: {fileID: 7966512275938030863}
   anim: {fileID: 0}
   _jumpForce: 400
   <Exp>k__BackingField: {fileID: 11400000, guid: 51f15bb6bc2006748a0a7bed04100a87, type: 2}

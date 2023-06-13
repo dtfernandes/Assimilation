@@ -6,7 +6,7 @@ public class InGameMenu : MonoBehaviour
 {
     private GameState _gameState;
     [SerializeField]
-    private GameObject _menu;
+    private GameObject _menu, _options;
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class InGameMenu : MonoBehaviour
 
                 _gameState.IsWorldStopped = true;
             }
-            else if (_menu.activeSelf)
+            else if (_menu.activeSelf || _options.activeSelf)
             {
                 LeaveMenu();
             }
@@ -41,6 +41,7 @@ public class InGameMenu : MonoBehaviour
     public void LeaveMenu()
     {
         _menu.SetActive(false);
+        _options.SetActive(false);
 
         _gameState.IsWorldStopped = false;
     }

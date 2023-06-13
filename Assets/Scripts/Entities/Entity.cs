@@ -23,6 +23,9 @@ public abstract class Entity: MonoBehaviour
     protected bool stoppedAux;
     protected RigidbodyConstraints2D initialConstraints;
 
+
+    [SerializeField]
+    protected SpriteRenderer spriteRenderer;
     protected Rigidbody2D rigid;
     [SerializeField]
     protected Animator anim;
@@ -39,7 +42,6 @@ public abstract class Entity: MonoBehaviour
         gameState = GameState.Instance;
         gameValues = gameState.GameValues;
         rigid = GetComponent<Rigidbody2D>();
-
         initialConstraints = rigid.constraints;
     }
 
@@ -68,7 +70,7 @@ public abstract class Entity: MonoBehaviour
         }
 
         StartCoroutine(Invincibility());
-
+        
         rigid.velocity = new Vector2(0, 0);
         rigid.AddForce(force);
         
@@ -83,12 +85,45 @@ public abstract class Entity: MonoBehaviour
 
     }
 
-    IEnumerator Invincibility()
+   IEnumerator Invincibility()
     {
-        yield return _invTime;
+        // Store the original sprite color and alpha
+        Color originalColor = spriteRenderer.color;
+        spriteRenderer.color = Color.red;
+        float originalAlpha = originalColor.a;
+
+
+
+        // Define the pulse parameters
+        float minAlpha = 0.2f;
+        float maxAlpha = 1f;
+        float pulseDuration = 0.1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _invincibilityTime)
+        {
+            // Calculate the alpha value based on the pulse
+            float t = Mathf.PingPong(elapsedTime, pulseDuration) / pulseDuration;
+            float currentAlpha = Mathf.Lerp(minAlpha, maxAlpha, t);
+
+            // Update the sprite color with the new alpha value
+            Color newColor = Color.red;
+            newColor.a = currentAlpha;
+            spriteRenderer.color = newColor;
+
+            // Increase the elapsed time
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // Set the sprite color back to the original after invincibility ends
+        spriteRenderer.color = originalColor;
+
         inInvincibility = false;
         EndInvincibility();
     }
+
 
     protected virtual void EndInvincibility() { }
     protected virtual void DamageReaction() { }

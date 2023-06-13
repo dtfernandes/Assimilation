@@ -22,6 +22,9 @@ public abstract class Enemy: Entity
     [SerializeField]
     protected GameObject expOrbPREFAB;
 
+    [SerializeField]
+    protected BloodSplatter bloodSplatters;
+
     [field:SerializeField]
     public int DangerLevel { get; private set; }
 
@@ -88,6 +91,7 @@ public abstract class Enemy: Entity
             
             RecieveDamage(1 + gameValues.P_Attack.Value, collision.gameObject);
             damageText.SetText(1 + gameValues.P_Attack.Value);
+            bloodSplatters.Splatter();
 
         }
     }

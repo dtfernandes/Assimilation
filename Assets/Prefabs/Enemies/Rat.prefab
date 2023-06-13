@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7211886865542348761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6905573083179163035}
+  - component: {fileID: 800606883242934074}
+  m_Layer: 9
+  m_Name: 'Blood '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6905573083179163035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211886865542348761}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8606283812871092870}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &800606883242934074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211886865542348761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410398558bfc603e0bf0fab090dc05c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particlePrefab: {fileID: 6370294574362825891, guid: 213bdcf85e0ca97d1b448a1f6f29d97d, type: 3}
+  _minParticles: 5
+  _maxParticles: 10
+  _minForce: 1
+  _maxForce: 5
 --- !u!1 &8606283812871092871
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +82,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8606283813055994338}
+  - {fileID: 6905573083179163035}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -86,11 +136,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invincibilityTime: 0.5
+  spriteRenderer: {fileID: 8606283813055994339}
   anim: {fileID: 1800011252133531188}
   damageNumPREFAB: {fileID: 3514439010199612354, guid: 929c4e99011be43de868097fb2d76b0e, type: 3}
   _maxHp: 3
   _speed: 2
   expOrbPREFAB: {fileID: 2192656415450708005, guid: 1a7afc92f479f3b49bc1a944e09307e2, type: 3}
+  bloodSplatters: {fileID: 800606883242934074}
   <DangerLevel>k__BackingField: 1
   _view: 3.06
   _attackRadius: 1.35
