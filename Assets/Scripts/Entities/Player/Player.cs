@@ -22,6 +22,7 @@ public class Player : Entity
     private ScriptableInt _health;
 
     private Rigidbody2D _rb;
+    private AudioSource _audio;
 
     [Header("MovementDust")]
     [SerializeField] private GameObject _jumpDustPREFAB;
@@ -38,6 +39,7 @@ public class Player : Entity
         hp = _health.Value;
         _health.Value = hp;
 
+        _audio = GetComponent<AudioSource>();
         _jumps = gameValues.P_MaxJumps.Value;
         _rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -156,6 +158,7 @@ public class Player : Entity
             if(!down || !_onGround)
             {
 
+                _audio.Play();
                 if(_onGround)
                 {
                     _rb.velocity = new Vector2(0, _rb.velocity.y);

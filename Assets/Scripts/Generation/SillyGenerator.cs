@@ -44,7 +44,20 @@ public class SillyGenerator : MonoBehaviour
         _maze = _mazeGenerator.Maze;
 
         WaveFunctionCollapse _wfc = new WaveFunctionCollapse();
-        _selectedTiles = _wfc.Collapse(_mazeGenerator.Maze, _possibleTiles);
+        while(true)
+        {
+            //Not the most elegant way to do it but it works...
+            try
+            {
+                _selectedTiles = _wfc.Collapse(_mazeGenerator.Maze, _possibleTiles);
+                break;
+            }
+            catch{
+                Debug.Log("Generation Error");
+            }
+        }
+        
+        
 
 
         //Select Start 
