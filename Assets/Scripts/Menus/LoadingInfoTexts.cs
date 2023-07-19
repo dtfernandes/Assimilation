@@ -30,4 +30,12 @@ public class LoadingInfoTexts : MonoBehaviour
             _floorText.fontSize = 30;  
         }
     }
+
+    public void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            typewriter.StopTypewriter();
+        }
+    }
 }
