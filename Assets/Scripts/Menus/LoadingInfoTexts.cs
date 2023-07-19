@@ -18,12 +18,12 @@ public class LoadingInfoTexts : MonoBehaviour
     {
         if(GameState.Instance.Floor != 0)
         {
-            GameState.Instance.Reset();
+            
             typewriter.Begin("Floor " + GameState.Instance.Floor + " ");
             _floorText.fontSize = 62.5f;  
         }
         else{
-
+            GameState.Instance.Reset();
             int deaths =  1 + PlayerPrefs.GetInt("deaths");
             typewriter.Begin($"Mission ID: X2AX0{deaths} \n Agent number : 20300:00{deaths} \n A strange signal has been detected "
             + "in the area \n Your mission is to find it, secure it and eliminate if necessary. \n Entering Floor 0. . . . . . .");  

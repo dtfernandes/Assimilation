@@ -7,6 +7,7 @@ public class GameState : ScriptableSingletonObject<GameState>
 {
     public void Reset()
     {
+        Debug.Log("Start");
         GameValues.P_MaxHealth.Value = 2;
         _health.Value = GameValues.P_MaxHealth.Value;
         Floor = 0;
