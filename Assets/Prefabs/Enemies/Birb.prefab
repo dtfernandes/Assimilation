@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7319098726911914948}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.8844497, y: -0.5302875, z: -0.022320438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 5549296320333500129}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!50 &7319098726911914944
 Rigidbody2D:
   serializedVersion: 4
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _invincibilityTime: 0.5
   spriteRenderer: {fileID: 7319098727667110048}
-  anim: {fileID: 0}
+  anim: {fileID: 6585023155261300275}
   damageNumPREFAB: {fileID: 3514439010199612354, guid: 929c4e99011be43de868097fb2d76b0e, type: 3}
   _maxHp: 2
   _speed: 2
@@ -96,6 +96,7 @@ MonoBehaviour:
   <DangerLevel>k__BackingField: 2
   _offset: 2
   _viewRange: 3.78
+  _windupSpeed: 0.3
 --- !u!1 &7319098727667110051
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,8 +227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particlePrefab: {fileID: 6370294574362825891, guid: 213bdcf85e0ca97d1b448a1f6f29d97d, type: 3}
-  _minParticles: 1
-  _maxParticles: 10
   _minForce: 1
   _maxForce: 5
 --- !u!1001 &7319098728132018063

@@ -1,23 +1,32 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class BirbEnemy : Enemy
 {
-    private bool _goingLeft;
-    private float _left, _right;
+    private StateMachine _stateMachine;
+
+    //Direction the enemy is moving towards
+    private int _dir;
+
+    //Player object
+    private Player _player;
+    private Vector2 _targetPos;
+
     private float _height;
 
     [SerializeField]
     private float _offset;
+
+    //Range the enemy can detect things
     [SerializeField]
     private float _viewRange;
 
-    private WaitForSeconds _surveyAreaTime;
-    private bool _survey;
+    private float _windupTime = 0.5f;
+    [SerializeField]
+    private float _windupSpeed;
 
-    private Vector2 _targetPosition;
+    private bool _didAttack;
 
     //Change to a statem machine 
     public System.Action state;
@@ -25,13 +34,29 @@ public class BirbEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        _surveyAreaTime = new WaitForSeconds(1);
-        _left = roomCollider.bounds.min.x;
-        _right = roomCollider.bounds.max.x;
+
+        _dir = 1;
+
+        State idle = new State(null, EndInvincibility, Idle);
+        State returnStart = new State( null, null, null);
+        State chase = new State(() => { _didAttack = false; }, EndInvincibility, WindUp);
+      
+        Transition idleToChase = new Transition(idle, chase, EnemySeesPlayer);
+        Transition returnStartToIdle = new Transition(returnStart, idle, () => (RewindBirb()));
+        Transition chaseTorreturnStart = new Transition(chase, returnStart, () => (_didAttack));
+
+        List<Transition> transitions = new List<Transition> { };
+
+        transitions.Add(idleToChase);
+        transitions.Add(returnStartToIdle);
+        transitions.Add(chaseTorreturnStart);
+
+        _stateMachine = new StateMachine();
+        _stateMachine.Initialize(idle, transitions);
+
         _height = transform.position.y;
-        PrepareIdle();
     }
-   
+
     protected override void Update()
     {      
         if(inInvincibility) return;
@@ -57,84 +82,116 @@ public class BirbEnemy : Enemy
         }
 
         base.Update();
-        state?.Invoke();
+        _stateMachine.Update();
     }
 
-    public void PrepareIdle()
-    {
-        _survey = true;
-        StartCoroutine(Survay());
-        state = Idle;
-    }
-
+    #region Idle
     public void Idle()
-    {
-        
-        int dir = 0;
+    {       
+        anim.speed = 1;
 
-        float heightToMove = _height - transform.position.y ;
+        if (inInvincibility || gameState.IsWorldStopped
+            || inKnobackProtection) return;
 
-        if(transform.position.x < _left + _offset)
+        transform.position += new Vector3(_dir
+            * _speed / 2 * Time.deltaTime, 0f, 0f);
+
+        //Create ray to know when the birds has something in front of him
+        RaycastHit2D hit =
+           Physics2D.Raycast(transform.position, new Vector3(1 * _dir, 0f, 0),
+           0.6f, LayerMask.GetMask("GRound"), 0);
+
+        if (hit.collider != null)
         {
-            _goingLeft = false;
+            //Change direction
+            ChangeDirection();
         }
-        if (transform.position.x > _right - _offset)
-        {
-            _goingLeft = true;
-        }
-
-        if (_goingLeft)
-        {
-            dir = -1;
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-        else
-        {
-            dir = 1;
-            transform.eulerAngles = new Vector3(0, 180, 0);
-        }
-
-        transform.position += new Vector3(dir * _speed, heightToMove, 0) * Time.deltaTime;
-
-        
     }
 
-    //Change this to a state machine some day
-    public void PrepareAttack()
+    private void ChangeDirection()
     {
-        _survey = false;
-        state = Attack;
+        _dir *= -1;
+        int angle = _dir == 1 ? 180 : 0;
+        transform.eulerAngles = new Vector3(0, angle, 0);
     }
 
+    #endregion
+
+    public bool EnemySeesPlayer()
+    {
+        //Maybe a bit much
+        RaycastHit2D[] hits =
+        Physics2D.CircleCastAll(transform.position, _viewRange, new Vector2(0, 0));
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider?.gameObject.tag == "Player")
+            { 
+                _player = hit.collider.gameObject.GetComponent<Player>();
+                _targetPos = _player.transform.position;
+                return true;
+            }
+        }
+
+        _player = null;
+        return false;
+    }
+
+    public bool RewindBirb()
+    {
+        anim.speed = 1;
+
+        if (inInvincibility || gameState.IsWorldStopped
+            || inKnobackProtection) return false;
+
+        Vector2 vectorPos = new Vector2(transform.position.x, _height);
+
+        transform.position =
+            Vector3.MoveTowards(transform.position, vectorPos, 0.01f);
+
+        if (Vector2.Distance(transform.position, vectorPos) < 0.1f)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    #region Attack
     public void Attack()
     {
         transform.position =
-            Vector3.MoveTowards(transform.position, _targetPosition, 0.06f);
-    
-        if(Vector2.Distance(transform.position, _targetPosition)< 0.1f)
+            Vector3.MoveTowards(transform.position, _targetPos, 0.03f);    
+
+        if(Vector3.Distance(transform.position, _targetPos) <= 0.01f)
         {
-            PrepareIdle();
+            _didAttack = true;
+            _windupTime = 0.5f; // Reset the wait time for the next attack (if needed).
         }
     }
 
-    IEnumerator Survay()
+    public void WindUp()
     {
-        while (_survey)
+        if (_windupTime <= 0f)
         {
-            yield return _surveyAreaTime;
-           RaycastHit2D[] hits =
-                Physics2D.CircleCastAll(transform.position, _viewRange, Vector2.zero);
+            // Code to execute after the wait (if needed).
+            Attack();
+        }
+        else
+        {
+            // Calculate the direction from the object to the player
+            Vector2 directionToPlayer = _targetPos - (Vector2)transform.position;
+            // Calculate the opposite direction
+            Vector3 oppositeDirection = -directionToPlayer.normalized;
 
-            if (hits.Any(x => x.collider.gameObject.tag == "Player"))
-            {
-                _targetPosition = 
-                    hits.First(x => x.collider.gameObject.tag == "Player")
-                    .collider.gameObject.transform.position;
-                PrepareAttack();
-            }    
+            // Move the object slightly in the opposite direction
+            transform.position += oppositeDirection * (_windupSpeed * Time.deltaTime);
+
+            _windupTime -= Time.deltaTime;
         }
     }
 
+    #endregion
 
     protected override void EndInvincibility()
     {
