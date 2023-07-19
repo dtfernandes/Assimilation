@@ -16,7 +16,7 @@ public class HealthIndicator : Setupable
     void Start()
     {
         Setup();
-
+      
         _health.OnChange += Setup;
     }
 

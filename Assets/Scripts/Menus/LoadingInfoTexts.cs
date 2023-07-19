@@ -18,6 +18,7 @@ public class LoadingInfoTexts : MonoBehaviour
     {
         if(GameState.Instance.Floor != 0)
         {
+            GameState.Instance.Reset();
             typewriter.Begin("Floor " + GameState.Instance.Floor + " ");
             _floorText.fontSize = 62.5f;  
         }
