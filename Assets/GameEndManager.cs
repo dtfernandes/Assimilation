@@ -46,7 +46,7 @@ public class GameEndManager : MonoBehaviour
         _gameState.Scores.Sort((score1, score2) =>
         {
             // First, compare by "Floor" int value
-            int floorComparison = score1.Floor.CompareTo(score2.Floor);
+            int floorComparison = -score1.Floor.CompareTo(score2.Floor);
 
             if (floorComparison != 0)
             {
