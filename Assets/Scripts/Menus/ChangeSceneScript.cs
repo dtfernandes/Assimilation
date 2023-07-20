@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,11 +12,25 @@ public class ChangeSceneScript : MonoBehaviour
     [SerializeField]
     private string _sceneName;
 
+    [SerializeField]
+    private WaitForSeconds _waitForSeconds;
+
+    private void Awake()
+    {
+        _waitForSeconds = new WaitForSeconds(0.01f);
+    }
+
     /// <summary>
     /// Method responsible for changing the current scene
     /// </summary>
     public void ChangeScene()
     {
+        StartCoroutine("WaitChangeScene");
+    }
+
+    public IEnumerator WaitChangeScene()
+    {
+        yield return _waitForSeconds;
         SceneManager.LoadScene(_sceneName);
     }
 }

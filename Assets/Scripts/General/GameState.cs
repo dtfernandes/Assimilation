@@ -11,6 +11,7 @@ public class GameState : ScriptableSingletonObject<GameState>
         _health.Value = GameValues.P_MaxHealth.Value;
         Floor = 0;
         IsWorldStopped = false;
+      
         GameValues.ResetAll();
     }
 
@@ -28,5 +29,8 @@ public class GameState : ScriptableSingletonObject<GameState>
     [field: SerializeField]
     public List<UpgradeDefinition> UpgradeDefinitions { get; private set; }
 
-    public GameResult GameResult { get; private set; }
+    public GameResult GameResult { get; set; }
+
+    [field:SerializeField]
+    public List<ScoreValues> Scores { get; set; }
 }

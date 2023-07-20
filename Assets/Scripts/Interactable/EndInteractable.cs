@@ -24,7 +24,8 @@ public class EndInteractable : Interactable
         
         if (gState.Floor == 5)
         {
-            SceneManager.LoadScene("GameWin");
+            GameState.Instance.GameResult = GameResult.Win;
+            SceneManager.LoadScene("GameLose");
         }
         else
         {          

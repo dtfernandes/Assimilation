@@ -233,6 +233,7 @@ public class Player : Entity
     {
         int deaths = PlayerPrefs.GetInt("deaths");
         PlayerPrefs.SetInt("deaths", deaths + 1);
+        gameState.GameResult = GameResult.Lose;
         UnityEngine.SceneManagement
             .SceneManager.LoadScene("GameLose");
     }

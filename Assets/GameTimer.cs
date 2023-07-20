@@ -7,7 +7,7 @@ public class GameTimer : MonoBehaviour
 {
     private static GameTimer instance; // Singleton instance
     private float timer = 0f; // Elapsed time
-    private bool _start;
+    private static bool _start;
 
     public static GameTimer Instance
     {
@@ -40,7 +40,7 @@ public class GameTimer : MonoBehaviour
     void Update()
     {
         if (!_start) return;
-
+       
         // Update the timer value every frame
         timer += Time.deltaTime;
     }
@@ -55,7 +55,7 @@ public class GameTimer : MonoBehaviour
         return FormatTime(timer);
     }
 
-    private string FormatTime(float timeInSeconds)
+    public static string FormatTime(float timeInSeconds)
     {
         int minutes = Mathf.FloorToInt(timeInSeconds / 60);
         int seconds = Mathf.FloorToInt(timeInSeconds % 60);
@@ -68,5 +68,12 @@ public class GameTimer : MonoBehaviour
     {
         _start = false;
     }
+
+    public void Reset()
+    {
+       timer = 0f;
+    }
+
+
 }
  
